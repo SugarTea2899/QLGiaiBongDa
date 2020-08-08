@@ -11,17 +11,17 @@ import com.example.qlgiaibongda.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button testBtn;
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        testBtn = findViewById(R.id.testBtn);
-        testBtn.setOnClickListener(new View.OnClickListener() {
+
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PlayerDetail.class);
-                startActivity(intent);
+            public void onClick(View v) { Intent intent = new Intent(MainActivity.this, PlayerDetail.class);
+            startActivity(intent);
             }
         });
     }
