@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:layout_gravity="center_vertical"
     >
 
     <TextView
         android:id="@+id/rankedNumberTextView"
         android:layout_width="20dp"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:text="16"
         android:textStyle="bold"
-        android:gravity="center"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
         android:textSize="15sp"
         
         />
@@ -22,19 +23,19 @@
     <ImageView
         android:id="@+id/statusTeamImageView"
         android:layout_width="30dp"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:src="@drawable/ic_up_rank"
         android:layout_toRightOf="@id/rankedNumberTextView"/>
 
     <ImageView
         android:layout_width="40dp"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:src="@drawable/ic_premier_league"
         android:id="@+id/teamRankedLogoImageView"
         android:layout_toRightOf="@id/statusTeamImageView"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:id="@+id/teamRankedNameTextView"
         android:text="Leicester City"
         android:layout_toRightOf="@id/teamRankedLogoImageView"
@@ -46,7 +47,7 @@
     <TextView
         android:id="@+id/teamPointTextView"
         android:layout_width="40dp"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:textSize="15sp"
         android:text="101"
@@ -56,7 +57,7 @@
     <TextView
         android:id="@+id/goalDiffTextView"
         android:layout_width="40dp"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:layout_toLeftOf="@+id/teamPointTextView"
         android:text="+30"
         android:gravity="center"
@@ -65,7 +66,7 @@
     <TextView
         android:id="@+id/roundPlayedTextView"
         android:layout_width="40dp"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:layout_toLeftOf="@id/goalDiffTextView"
         android:gravity="center"
         android:text="36"

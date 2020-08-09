@@ -12,20 +12,24 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:id="@+id/mainDrawerLayout">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentTop="true"
                 android:background="@color/colorBlue600"
                 android:id="@+id/toolBar"
                 app:title="Premier League"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="250dp"
                 android:layout_margin="5dp"
+                android:layout_below="@id/toolBar"
+                android:id="@+id/roundMatchLayout"
                 android:background="@drawable/grey_border">
                 <TextView
                     android:id="@+id/roundNumberTextView"
@@ -41,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/roundNumberTextView"
+                    android:layout_above="@id/listMatchSeparator"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     />
@@ -48,39 +53,46 @@
                     android:id="@+id/listMatchSeparator"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
-                    android:layout_below="@id/roundMatchListView"
+
+                    android:layout_above="@id/listMatchHistoryImageView"
                     android:src="@drawable/grey_line_separator"/>
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/listMatchHistoryImageView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_below="@id/listMatchSeparator"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_premier_league"
+                    android:src="@drawable/ic_more_info"
+                    android:background="@color/colorTransparent"
+
                     android:clickable="true">
-                </ImageView>
+                </ImageButton>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_below="@id/listMatchSeparator"
+                    android:layout_alignParentBottom="true"
                     android:text="Xem các trận trước"
                     android:layout_toLeftOf="@id/listMatchHistoryImageView"
                     android:textStyle="bold"
                     android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
 
                     android:textSize="15sp"
                     android:gravity="center_vertical"/>
 
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@drawable/grey_border">
+                android:background="@drawable/grey_border"
+                android:layout_below="@id/roundMatchLayout"
+                android:layout_alignParentBottom="true">
                 <TextView
                     android:id="@+id/rankedTextView"
                     android:layout_width="wrap_content"
@@ -149,43 +161,50 @@
                     android:id="@+id/topRankedListView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_above="@id/listRankedSeparator"
                     android:layout_below="@id/labelRankedTable"
                     android:layout_marginTop="10dp"
+
                     />
 
                 <ImageView
                     android:id="@+id/listRankedSeparator"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
-                    android:layout_below="@id/topRankedListView"
-                    android:src="@drawable/grey_line_separator"/>
+                    android:layout_above="@id/listFullRankedImageView"
+                    android:src="@drawable/grey_line_separator"
+                    />
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/listFullRankedImageView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:layout_below="@id/listRankedSeparator"
+
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_premier_league"
-                    android:clickable="true">
-                </ImageView>
+                    android:src="@drawable/ic_more_info"
+                    android:clickable="true"
+                    android:background="@color/colorTransparent"
+                    android:layout_alignParentBottom="true">
+                </ImageButton>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_below="@id/listRankedSeparator"
-                    android:text="Xem chi tiết"
-                    android:layout_toLeftOf="@id/listFullRankedImageView"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
 
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@id/listFullRankedImageView"
+                    android:gravity="center_vertical"
+                    android:text="Xem chi tiết"
                     android:textSize="15sp"
-                    android:gravity="center_vertical"/>
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
-        </LinearLayout>
+
+        </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,9 +29,9 @@ public class ItemMatchRoundAdapter extends BaseAdapter {
         TextView textViewHomeName;
         TextView textViewAwayName;
         TextView textViewTimeInfo;
-        ImageView imgHome;
-        ImageView imgAway;
-        ImageView imgMoreInfo;
+        ImageButton imgHome;
+        ImageButton imgAway;
+        ImageButton imgMoreInfo;
 
     }
     @Override
@@ -58,9 +59,9 @@ public class ItemMatchRoundAdapter extends BaseAdapter {
             viewHolder.textViewHomeName = (TextView) view.findViewById(R.id.homeTeamNameText);
             viewHolder.textViewAwayName = (TextView) view.findViewById(R.id.awayTeamNameText);
             viewHolder.textViewTimeInfo = (TextView) view.findViewById(R.id.matchTimeInfoText);
-            viewHolder.imgHome = (ImageView) view.findViewById(R.id.homeTeamLogoImage);
-            viewHolder.imgAway = (ImageView) view.findViewById(R.id.awayTeamLogoImage);
-            viewHolder.imgMoreInfo = (ImageView) view.findViewById(R.id.matchMoreInfoImage);
+            viewHolder.imgHome = (ImageButton) view.findViewById(R.id.homeTeamLogoImage);
+            viewHolder.imgAway = (ImageButton) view.findViewById(R.id.awayTeamLogoImage);
+            viewHolder.imgMoreInfo = (ImageButton) view.findViewById(R.id.matchMoreInfoImage);
             view.setTag(viewHolder);
         }
         else
