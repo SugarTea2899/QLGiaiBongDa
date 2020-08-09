@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">QL Giai Bong Da</string>
+    <string name="player_name">Tên cầu thủ</string>
+    <string name="pick_date">Chọn ngày sinh</string>
+    <string name="nationality">Quốc tịch</string>
+    <string name="pick_image">Chọn hình ảnh</string>
+    <string name="player_number">Số áo</string>
+
     <string name="title_activity_main">Main</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

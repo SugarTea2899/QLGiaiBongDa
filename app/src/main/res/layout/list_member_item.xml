@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:weightSum="10">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/numberPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageOfPlayer"
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"
+        android:src="@drawable/old_trafford"
+        android:scaleType="fitXY"
+        android:padding="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/namePlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jamie Vardy"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginBottom="5dp"/>
+        <ImageView
+            android:id="@+id/imageNationality"
+            android:layout_width="38dp"
+            android:layout_height="25dp"
+            android:src="@drawable/spain"
+            android:scaleType="fitXY"
+            android:layout_below="@id/namePlayer"
+            android:layout_marginEnd="5dp"/>
+        <TextView
+            android:id="@+id/nationalityPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spain"
+            android:layout_toEndOf="@id/imageNationality"
+            android:layout_below="@id/namePlayer"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+        <ImageButton
+            android:id="@+id/btnSeeDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward"
+            android:background="@android:color/transparent"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+</LinearLayout>

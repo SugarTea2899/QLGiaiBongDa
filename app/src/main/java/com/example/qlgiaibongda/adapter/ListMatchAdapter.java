@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
-import com.example.qlgiaibongda.activity.ListMatchesFragment;
 import com.example.qlgiaibongda.model.Match;
 
 import java.util.ArrayList;
