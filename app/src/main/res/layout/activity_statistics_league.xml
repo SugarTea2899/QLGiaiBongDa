@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.StatisticsLeague">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarStatisticLeague"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <include
+            android:id="@+id/toolBarStaticLeague"
+            layout="@layout/appbar_1" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/scrollStatisticLeague"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbarStatisticLeague">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+            <TextView
+                android:id="@+id/sbt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Số bàn thắng"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/ct1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cầu thủ"
+                android:textSize="18sp"
+                android:layout_below="@id/sbt"/>
+            <TextView
+                android:id="@+id/Sbt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số bàn thắng"
+                android:textSize="18sp"
+                android:layout_below="@id/sbt"
+                android:layout_alignParentEnd="true"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvListGoalStatistic"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ct1"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/rcvListGoalStatistic"/>
+
+            <TextView
+                android:id="@+id/stv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thẻ vàng"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@id/rcvListGoalStatistic"/>
+            <TextView
+                android:id="@+id/ct2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cầu thủ"
+                android:textSize="18sp"
+                android:layout_below="@id/stv"/>
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thẻ vàng"
+                android:textSize="18sp"
+                android:layout_below="@id/stv"
+                android:layout_alignParentEnd="true"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvListYellowStatistic"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"
+                android:layout_below="@id/rcvListYellowStatistic" />
+
+            <TextView
+                android:id="@+id/std"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thẻ đỏ"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@id/rcvListYellowStatistic" />
+            <TextView
+                android:id="@+id/ct3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cầu thủ"
+                android:textSize="18sp"
+                android:layout_below="@id/std"/>
+            <TextView
+                android:id="@+id/td"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thẻ đỏ"
+                android:textSize="18sp"
+                android:layout_below="@id/std"
+                android:layout_alignParentEnd="true"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvListRedStatistic"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/td"/>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

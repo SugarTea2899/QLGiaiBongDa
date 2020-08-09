@@ -20,7 +20,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_below="@id/appbar"
-        android:layout_height="130dp"
+        android:layout_height="140dp"
 
         android:background="@drawable/border_layout1"
         >
@@ -30,7 +30,7 @@
         android:id="@+id/cvPlayer"
         android:layout_width="135dp"
         android:layout_height="135dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/ed0ba0_x4aa_ony"
         app:civ_border_color="#ffffff"
@@ -39,7 +39,7 @@
     <LinearLayout
         android:layout_toRightOf="@id/cvPlayer"
         android:layout_width="wrap_content"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="110dp"
         android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -88,7 +88,7 @@
 
 
     <LinearLayout
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:paddingLeft="18dp"
@@ -104,12 +104,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:paddingBottom="10dp"
-            android:textColor="#000000"
             android:background="@drawable/line_text"
-            android:textSize="20dp"
-            android:text="Thông tin chi tiết"/>
+            android:paddingBottom="10dp"
+            android:text="Thông tin chi tiết"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -123,7 +123,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="Ngày sinh"
                 android:textColor="#000000"/>
 
@@ -131,7 +131,7 @@
                 android:id="@+id/tvDOB"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="02/08/1999"
@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:text="Quốc tịch"
                 android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tvNationality"
@@ -161,7 +161,7 @@
                 android:layout_alignParentRight="true"
                 android:text="Portugal"
                 android:textColor="#000000"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:text="Bàn thắng"
                 android:textColor="#000000"
-                android:textSize="18dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tvGoal"
@@ -188,7 +188,7 @@
                 android:layout_alignParentRight="true"
                 android:text="10"
                 android:textColor="#000000"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -231,7 +231,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="Thẻ vàng"
                 android:textColor="#000000"/>
 
@@ -240,7 +240,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:text="0"
                 android:textColor="#000000"/>
@@ -259,7 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thẻ đỏ"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textColor="#000000"/>
 
             <TextView
@@ -268,7 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="0"
                 android:textColor="#000000"/>
         </RelativeLayout>
