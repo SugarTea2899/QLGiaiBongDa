@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.qlgiaibongda.activity.ClubStatisticalFragment;
 import com.example.qlgiaibongda.activity.ListMatchesFragment;
+import com.example.qlgiaibongda.activity.ListMemberClubFragment;
 
 public class TabLayoutClubDetailAdapter extends FragmentPagerAdapter {
     private Context myContext;
@@ -25,9 +26,10 @@ public class TabLayoutClubDetailAdapter extends FragmentPagerAdapter {
             case 0:
                 ListMatchesFragment listMatchesFragment = new ListMatchesFragment();
                 return listMatchesFragment;
-            //case 1:
-            //    return null;
             case 1:
+                ListMemberClubFragment listMemberClubFragment = new ListMemberClubFragment();
+                return listMemberClubFragment;
+            case 2:
                 ClubStatisticalFragment clubStatisticalFragment = new ClubStatisticalFragment();
                 return clubStatisticalFragment;
             default:
