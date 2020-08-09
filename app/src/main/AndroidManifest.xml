@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.ListMatchesActivity"></activity>
+        <activity android:name=".activity.PlayerDetail"></activity>
         <activity android:name=".activity.ClubDetail" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

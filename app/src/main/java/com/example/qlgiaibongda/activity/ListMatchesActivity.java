@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toolbar;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.ListMatchAdapter;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ListMatchesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ListMatchAdapter.onItemClickListener {
+    private Toolbar toolbar;
     private Spinner spinner;
     private RecyclerView rcvListMatches;
     private ListMatchAdapter listMatchAdapter;
@@ -31,6 +33,8 @@ public class ListMatchesActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void getWidget() {
+        toolbar = (Toolbar) findViewById(R.id.toolBar3);
+
         spinner = (Spinner) findViewById(R.id.roundSpinner);
         String[] values = {"Vòng đấu 1", "Vòng đấu 2", "Vòng đấu 3", "Vòng đấu 4", "Vòng đấu 5"};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(values));

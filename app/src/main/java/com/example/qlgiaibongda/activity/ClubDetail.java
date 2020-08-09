@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.TabLayoutClubDetailAdapter;
@@ -12,12 +13,14 @@ import com.google.android.material.tabs.TabLayout;
 public class ClubDetail extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_detail);
 
+        toolbar = (Toolbar) findViewById(R.id.toolBar2);
         tabLayout = (TabLayout) findViewById(R.id.menuOptions);
         tabLayout.addTab(tabLayout.newTab().setText("TRẬN ĐẤU"));
         //tabLayout.addTab(tabLayout.newTab().setText("THÀNH VIÊN"));
