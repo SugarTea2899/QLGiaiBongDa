@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ClubDetail"
+    android:background="#E5E5E5">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarClubDetail"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <include
+            android:id="@+id/toolBar2"
+            layout="@layout/appbar_2" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/infoBriefClub"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/appbarClubDetail">
+        <ImageView
+            android:id="@+id/imageViewClubDetail"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/old_trafford"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:background="#80212121"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:padding="5dp">
+            <ImageView
+                android:id="@+id/imageOfClub"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/manutd"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+            <TextView
+                android:id="@+id/nameOfClub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MANCHESTER UNITED"
+                android:layout_marginStart="8dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:layout_toEndOf="@id/imageOfClub"/>
+            <TextView
+                android:id="@+id/stadiumClub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Old Trafford, Manchester"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorRed900"
+                android:layout_below="@id/nameOfClub"
+                android:layout_toEndOf="@id/imageOfClub"/>
+            <TextView
+                android:id="@+id/sponsorOfClub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chervolet"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorGrey200"
+                android:layout_below="@id/stadiumClub"
+                android:layout_toEndOf="@id/imageOfClub"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/menuOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/infoBriefClub"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/menuOptions"/>
+
+</RelativeLayout>
