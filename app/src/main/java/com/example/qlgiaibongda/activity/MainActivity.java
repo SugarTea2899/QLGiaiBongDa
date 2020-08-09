@@ -89,10 +89,16 @@ public class MainActivity extends AppCompatActivity {
     private void addMatchAndRound() {
         itemMatchRoundArrayList = new ArrayList<>();
 
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_premier_league));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_premier_league));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_premier_league));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_premier_league));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
 
         itemMatchRoundAdapter = new ItemMatchRoundAdapter(this, R.layout.round_match_row,itemMatchRoundArrayList);
         roundMatchListView.setAdapter(itemMatchRoundAdapter);
@@ -102,11 +108,17 @@ public class MainActivity extends AppCompatActivity {
         itemRankTeamArrayList = new ArrayList<>();
 
 
-        itemRankTeamArrayList.add(new ItemRankTeam("1", R.drawable.ic_up_rank, R.drawable.ic_premier_league, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("1", R.drawable.ic_up_rank, R.drawable.ic_premier_league, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("1", R.drawable.ic_up_rank, R.drawable.ic_premier_league, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("1", R.drawable.ic_up_rank, R.drawable.ic_premier_league, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("1", R.drawable.ic_up_rank, R.drawable.ic_premier_league, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_keep_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_down_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
+
 
 
         itemRankTeamAdapter = new ItemRankTeamAdapter(this, R.layout.ranked_team_row,itemRankTeamArrayList);
