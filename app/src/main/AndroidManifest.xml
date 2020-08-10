@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.EditTeam"></activity>
         <activity android:name=".activity.AddTeam" />
+        <activity android:name=".activity.RankingActivity"></activity>
         <activity android:name=".activity.RefereeDetail" />
         <activity android:name=".activity.CoachDetail" />
         <activity android:name=".activity.AddPlayer" />
