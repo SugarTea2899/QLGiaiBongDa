@@ -9,7 +9,8 @@
     <string name="donors">Nhà tài trợ</string>
     <string name="stadium">Tên sân nhà</string>
     <string name="coach_name">Tên HLV</string>
-
+    <string name="referee_name">Tên trọng tài</string>
+    
 
     <string name="title_activity_main">Main</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
