@@ -55,16 +55,16 @@
                 android:id="@+id/edtPlayerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/stroke_edit_text"
-                android:paddingLeft="10dp"
-                android:paddingBottom="8dp"
                 android:layout_below="@id/layout2"
-                android:paddingTop="8dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="28dp"
                 android:layout_marginRight="15dp"
-                android:textSize="20sp"
-                android:hint="@string/player_name"/>
+                android:background="@drawable/stroke_edit_text"
+                android:hint="@string/player_name"
+                android:paddingLeft="10dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:id="@+id/layout1"
