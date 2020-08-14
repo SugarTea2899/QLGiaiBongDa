@@ -4,40 +4,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Button;
 
 import com.example.qlgiaibongda.R;
 
 import com.example.qlgiaibongda.adapter.ItemDrawer;
 import com.example.qlgiaibongda.adapter.ItemDrawerAdapter;
 import com.example.qlgiaibongda.adapter.ItemMatchRound;
-import com.example.qlgiaibongda.adapter.ItemMatchRoundAdapter;
+import com.example.qlgiaibongda.adapter.ListMatchRoundAdapter;
 import com.example.qlgiaibongda.adapter.ItemRankTeam;
 import com.example.qlgiaibongda.adapter.ItemRankTeamAdapter;
+import com.example.qlgiaibongda.model.Match;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ListMatchRoundAdapter.onItemClickListener{
 
     private Toolbar toolbar;
     private DrawerLayout mainDrawerLayout;
     private NavigationView mainNavigationView;
     private ListView menuListView;
     private TextView roundNumberTextView;
-    private ListView roundMatchListView;
-    private ListView topRankedListView;
+    private RecyclerView roundMatchRecyclerView;
+    private RecyclerView topRankedRecyclerView;
     ArrayList<ItemDrawer> itemDrawerArrayList;
-    ArrayList<ItemMatchRound> itemMatchRoundArrayList;
+    ArrayList<Match> itemMatchRoundArrayList;
     ArrayList<ItemRankTeam> itemRankTeamArrayList;
     ItemDrawerAdapter itemDrawerAdapter;
-    ItemMatchRoundAdapter itemMatchRoundAdapter;
+    ListMatchRoundAdapter itemMatchRoundAdapter;
     ItemRankTeamAdapter itemRankTeamAdapter;
 
     private TextView justTest;
@@ -89,19 +92,21 @@ public class MainActivity extends AppCompatActivity {
     private void addMatchAndRound() {
         itemMatchRoundArrayList = new ArrayList<>();
 
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
-        itemMatchRoundArrayList.add(new ItemMatchRound("MU", "MC","22:00 31/7", R.drawable.ic_premier_league,R.drawable.ic_premier_league,R.drawable.ic_more_info));
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
+        itemMatchRoundArrayList.add(new Match());
 
-        itemMatchRoundAdapter = new ItemMatchRoundAdapter(this, R.layout.round_match_row,itemMatchRoundArrayList);
-        roundMatchListView.setAdapter(itemMatchRoundAdapter);
+
+        //itemMatchRoundAdapter = new ListMatchRoundAdapter(itemMatchRoundArrayList, MainActivity.this, MainActivity.this);
+        roundMatchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        itemMatchRoundAdapter = new ListMatchRoundAdapter(itemMatchRoundArrayList,MainActivity.this,MainActivity.this);
+        roundMatchRecyclerView.setAdapter(itemMatchRoundAdapter);
     }
 
     private void addTopTeam() {
@@ -122,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         itemRankTeamAdapter = new ItemRankTeamAdapter(this, R.layout.ranked_team_row,itemRankTeamArrayList);
-        topRankedListView.setAdapter(itemRankTeamAdapter);
+        //topRankedRecyclerView.setAdapter(itemRankTeamAdapter);
 
     }
 
@@ -132,7 +137,22 @@ public class MainActivity extends AppCompatActivity {
         mainNavigationView = (NavigationView) findViewById(R.id.navigationView);
         menuListView = (ListView) findViewById(R.id.menuListView);
         roundNumberTextView = (TextView) findViewById(R.id.roundNumberTextView);
-        roundMatchListView = (ListView) findViewById(R.id.roundMatchListView);
-        topRankedListView = (ListView) findViewById(R.id.topRankedListView);
+        roundMatchRecyclerView = (RecyclerView) findViewById(R.id.roundMatchRecyclerView);
+        topRankedRecyclerView = (RecyclerView) findViewById(R.id.topRankedRecyclerView);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    @Override
+    public void onItemClick(int i) {
+
     }
 }

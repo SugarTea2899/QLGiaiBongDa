@@ -40,8 +40,8 @@
                     android:textStyle="bold"
                     android:textSize="15sp"/>
 
-                <ListView
-                    android:id="@+id/roundMatchListView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/roundMatchRecyclerView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/roundNumberTextView"
@@ -157,8 +157,8 @@
                         />
 
                 </RelativeLayout>
-                <ListView
-                    android:id="@+id/topRankedListView"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/topRankedRecyclerView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@id/listRankedSeparator"
@@ -246,7 +246,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imgPremierLeagueLogo"
                     android:layout_marginTop="20dp">
-
                 </ListView>
 
             </RelativeLayout>
