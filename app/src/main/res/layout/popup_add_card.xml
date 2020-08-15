@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/border_radius"
+    android:layout_margin="10dp"
+    android:padding="10dp">
+    <RadioButton
+        android:id="@+id/homeTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đội nhà"
+        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+    <RadioButton
+        android:id="@+id/guestTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đội khách"
+        android:layout_alignParentEnd="true"
+        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+    <Spinner
+        android:id="@+id/spnPlayer"
+        android:layout_below="@id/guestTeam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:background="@drawable/spinner_background"
+        android:paddingBottom="2dp"
+        android:textSize="22sp"
+        android:paddingTop="2dp"
+        android:layout_marginTop="20dp"/>
+    <Spinner
+        android:id="@+id/spnType"
+        android:layout_below="@id/spnPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:background="@drawable/spinner_background"
+        android:paddingBottom="2dp"
+        android:textSize="22sp"
+        android:paddingTop="2dp"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Xác nhận"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue600"
+        android:textColor="#ffffff"
+        android:layout_below="@id/spnType"/>
+</RelativeLayout>
