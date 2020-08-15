@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RuleLeague">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarRuleLeague"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <include
+            android:id="@+id/toolBarRuleLeague"
+            layout="@layout/appbar_1" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbarRuleLeague">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_55" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quy định giải đấu"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/colorGray"
+        android:layout_below="@id/title"/>
+
+    <RelativeLayout
+        android:id="@+id/minage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/separator">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Độ tuổi tối thiểu"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/minAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="15"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/maxplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/minage">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số lượng cầu thủ tối đa"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/maxPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="23"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/maxforeign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/maxplayer">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số lượng ngoại binh tối đa"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/maxForeign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="10"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/winpoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/maxforeign">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điểm thắng trận"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/winPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="3"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/drawpoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/winpoint">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điểm trận hòa"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/drawPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="1"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/losepoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/drawpoint">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điểm thua trận"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/losePoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="0"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/maxsubstitution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/losepoint">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số quyền thay người mỗi trận"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/maxSubstitution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="3"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</RelativeLayout>

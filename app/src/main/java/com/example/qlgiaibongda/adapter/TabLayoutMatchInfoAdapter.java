@@ -10,6 +10,9 @@ import com.example.qlgiaibongda.activity.ClubStatisticalFragment;
 import com.example.qlgiaibongda.activity.ListMatchesFragment;
 import com.example.qlgiaibongda.activity.ListMemberClubFragment;
 import com.example.qlgiaibongda.activity.MatchProgressFragment;
+import com.example.qlgiaibongda.activity.SelectedList;
+import com.example.qlgiaibongda.activity.SelectedListFragment;
+import com.example.qlgiaibongda.activity.StatisticMatchFragment;
 
 public class TabLayoutMatchInfoAdapter extends FragmentPagerAdapter {
     private Context myContext;
@@ -28,11 +31,11 @@ public class TabLayoutMatchInfoAdapter extends FragmentPagerAdapter {
                 MatchProgressFragment matchProgressFragment = new MatchProgressFragment();
                 return matchProgressFragment;
             case 1:
-                ListMemberClubFragment listMemberClubFragment = new ListMemberClubFragment();
-                return listMemberClubFragment;
+                SelectedListFragment selectedListFragment = new SelectedListFragment();
+                return selectedListFragment;
             case 2:
-                ClubStatisticalFragment clubStatisticalFragment = new ClubStatisticalFragment();
-                return clubStatisticalFragment;
+                StatisticMatchFragment statisticMatchFragment = new StatisticMatchFragment();
+                return statisticMatchFragment;
             default:
                 return null;
         }

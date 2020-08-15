@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MatchInfo"></activity>
-        <activity android:name=".activity.CoachManagement"></activity>
+        <activity android:name=".activity.RuleLeague"></activity>
+        <activity android:name=".activity.MatchInfo" />
+        <activity android:name=".activity.CoachManagement" />
         <activity android:name=".activity.TeamManagement" />
         <activity android:name=".activity.SelectedList" />
         <activity android:name=".activity.AddMatch" />
