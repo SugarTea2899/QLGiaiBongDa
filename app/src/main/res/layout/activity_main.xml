@@ -8,210 +8,226 @@
     tools:context=".activity.MainActivity">
 
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/mainDrawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:id="@+id/mainDrawerLayout">
+        android:fitsSystemWindows="true">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentTop="true"
                 android:background="@color/colorBlue600"
-                android:id="@+id/toolBar"
-                app:title="Premier League"/>
+                app:title="Premier League"
+                app:titleTextColor="@color/colorWhite"/>
 
-            <RelativeLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="5dp"
+                android:layout_height="match_parent"
                 android:layout_below="@id/toolBar"
-                android:id="@+id/roundMatchLayout"
-                android:background="@drawable/grey_border">
-                <TextView
-                    android:id="@+id/roundNumberTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Vòng đấu 38"
-                    android:textStyle="bold"
-                    android:textSize="15sp"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/roundMatchRecyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/roundNumberTextView"
-                    android:layout_above="@id/listMatchSeparator"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    />
-                <ImageView
-                    android:id="@+id/listMatchSeparator"
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-
-                    android:layout_above="@id/listMatchHistoryImageView"
-                    android:src="@drawable/grey_line_separator"/>
-
-                <ImageButton
-                    android:id="@+id/listMatchHistoryImageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_more_info"
-                    android:background="@color/colorTransparent"
-
-                    android:clickable="true">
-                </ImageButton>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:text="Xem các trận trước"
-                    android:layout_toLeftOf="@id/listMatchHistoryImageView"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-
-                    android:textSize="15sp"
-                    android:gravity="center_vertical"/>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/grey_border"
-                android:layout_below="@id/roundMatchLayout"
-                android:layout_alignParentBottom="true">
-                <TextView
-                    android:id="@+id/rankedTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Bảng xếp hạng"
-                    android:textStyle="bold"
-                    android:textSize="15sp"/>
+                android:layout_marginBottom="10dp">
 
                 <RelativeLayout
-                    android:layout_below="@id/rankedTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/grey_rectangle_fill"
-                    android:id="@+id/labelRankedTable"
-                    android:layout_marginTop="5dp">
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:text="Câu lạc bộ"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="80dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:textSize="20sp"
-                        />
-                    <TextView
-                        android:id="@+id/labelPointRankedTable"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="Đ"
-                        android:textAlignment="center"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:textSize="20sp"
-                        />
-                    <TextView
-                        android:id="@+id/labelGDRankedTable"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="HS"
-                        android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:layout_toLeftOf="@id/labelPointRankedTable"
-                        android:layout_alignParentTop="true"
-                        android:textSize="20sp"
-                        />
-                    <TextView
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                        android:layout_marginTop="5dp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:text="ĐĐ"
-                        android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:layout_toLeftOf="@id/labelGDRankedTable"
-                        android:layout_alignParentTop="true"
-                        android:textSize="20sp"
-                        />
+                    <RelativeLayout
+                        android:id="@+id/roundMatchLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/grey_border">
 
+                        <TextView
+                            android:id="@+id/roundNumberTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Vòng đấu 38"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/roundMatchRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_below="@id/roundNumberTextView"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp" />
+
+                        <ImageView
+                            android:id="@+id/listMatchSeparator"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@id/roundMatchRecyclerView"
+                            android:src="@drawable/grey_line_separator" />
+
+                        <ImageButton
+                            android:id="@+id/listMatchHistoryImageView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@color/colorTransparent"
+                            android:clickable="true"
+                            android:layout_below="@id/roundMatchRecyclerView"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/ic_more_info"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toLeftOf="@id/listMatchHistoryImageView"
+                            android:gravity="center_vertical"
+                            android:text="Xem các trận trước"
+
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/roundMatchLayout"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/grey_border">
+
+                        <TextView
+                            android:id="@+id/rankedTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="Bảng xếp hạng"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:id="@+id/labelRankedTable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/rankedTextView"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/grey_rectangle_fill">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="80dp"
+                                android:layout_marginTop="5dp"
+                                android:text="Câu lạc bộ"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/labelPointRankedTable"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="5dp"
+                                android:text="Đ"
+                                android:textAlignment="center"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/labelGDRankedTable"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_toLeftOf="@id/labelPointRankedTable"
+                                android:text="HS"
+                                android:textAlignment="center"
+                                android:textSize="20sp" />
+
+                            <TextView
+
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_toLeftOf="@id/labelGDRankedTable"
+                                android:text="ĐĐ"
+                                android:textAlignment="center"
+                                android:textSize="20sp" />
+
+                        </RelativeLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/topRankedRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/labelRankedTable"
+                            android:layout_marginTop="10dp"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/listRankedSeparator"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_below="@id/topRankedRecyclerView"
+                            android:src="@drawable/grey_line_separator" />
+
+                        <ImageButton
+                            android:id="@+id/listFullRankedImageView"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+
+                            android:layout_below="@id/listRankedSeparator"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/colorTransparent"
+                            android:clickable="true"
+                            android:src="@drawable/ic_more_info"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_below="@id/listRankedSeparator"
+
+                            android:layout_toLeftOf="@id/listFullRankedImageView"
+                            android:gravity="center_vertical"
+                            android:text="Xem chi tiết"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
                 </RelativeLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/topRankedRecyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@id/listRankedSeparator"
-                    android:layout_below="@id/labelRankedTable"
-                    android:layout_marginTop="10dp"
-
-                    />
-
-                <ImageView
-                    android:id="@+id/listRankedSeparator"
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_above="@id/listFullRankedImageView"
-                    android:src="@drawable/grey_line_separator"
-                    />
-
-                <ImageButton
-                    android:id="@+id/listFullRankedImageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_more_info"
-                    android:clickable="true"
-                    android:background="@color/colorTransparent"
-                    android:layout_alignParentBottom="true">
-                </ImageButton>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_toLeftOf="@id/listFullRankedImageView"
-                    android:gravity="center_vertical"
-                    android:text="Xem chi tiết"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
+            </ScrollView>
 
         </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            android:id="@+id/navigationView">
+            android:fitsSystemWindows="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -232,8 +248,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@id/imgPremierLeagueLogo"
                     android:layout_marginTop="30dp"
+                    android:layout_toEndOf="@id/imgPremierLeagueLogo"
                     android:gravity="center_vertical"
                     android:text="Premier League"
                     android:textColor="@color/colorPurpleMainMenu"
@@ -245,8 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imgPremierLeagueLogo"
-                    android:layout_marginTop="20dp">
-                </ListView>
+                    android:layout_marginTop="20dp"></ListView>
 
             </RelativeLayout>
         </com.google.android.material.navigation.NavigationView>

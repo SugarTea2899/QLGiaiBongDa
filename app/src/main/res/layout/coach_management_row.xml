@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="80dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/blue_border"
+    >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/coachManageRowLogoImageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/old_trafford"
+        android:layout_alignParentStart="true" />
+    <ImageView
+        android:id="@+id/coachManageRowMoreInfoImageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_more_info"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:id="@+id/coachManageRowNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="Sir Alex Ferguson"
+        android:layout_toRightOf="@id/coachManageRowLogoImageView"
+        android:layout_toLeftOf="@id/coachManageRowMoreInfoImageView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+
+
+</RelativeLayout>
