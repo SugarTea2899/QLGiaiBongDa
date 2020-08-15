@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:weightSum="10">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/playerManageRowShirtNumberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/playerManageRowPhotoImageView"
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="match_parent"
+        android:src="@drawable/old_trafford"
+        android:scaleType="fitXY"
+        android:padding="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/playerManageRowNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="David de Gea"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginBottom="5dp"/>
+        <ImageView
+            android:id="@+id/playerManageRowClubImageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/manutd"
+            android:scaleType="fitXY"
+            android:layout_below="@id/playerManageRowNameTextView"
+            android:layout_marginEnd="5dp"/>
+        <TextView
+            android:id="@+id/playerManageRowClubTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manchester United"
+            android:layout_toEndOf="@id/playerManageRowClubImageView"
+            android:layout_below="@id/playerManageRowNameTextView"
+            android:textSize="18sp"/>
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/playerManageRowFreeAgentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cầu thủ tự do"
+            android:layout_below="@id/playerManageRowNameTextView"
+            android:textStyle="italic"
+            android:textSize="20sp"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:padding="5dp">
+        <ImageButton
+            android:id="@+id/playerManageRowMoreInfoImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_forward"
+            android:background="@android:color/transparent"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

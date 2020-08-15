@@ -32,5 +32,6 @@
     <string name="team_management">Quản lý đội bóng</string>
     <string name="coach_management">Quản lý huấn luyện viên</string>
     <string name="referee_management">Quản lý trọng tài</string>
+    <string name="player_management">Quản lý cầu thủ</string>
 
 </resources>
