@@ -24,7 +24,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentTop="true"
                 android:background="@color/colorBlue600"
-                app:title="Premier League" />
+                app:title="Premier League"
+                app:titleTextColor="@color/colorWhite"/>
 
             <ScrollView
                 android:layout_width="match_parent"

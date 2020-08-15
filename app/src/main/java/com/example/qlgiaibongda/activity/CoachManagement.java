@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.ListCoachManagementAdapter;
@@ -23,6 +24,8 @@ public class CoachManagement extends AppCompatActivity implements AdapterView.On
     private EditText edtCoachManagementSearch;
     ArrayList<Coach> listCoachManagementItem;
     private ListCoachManagementAdapter listCoachManagementAdapter;
+    private TextView toolbarTitleCoachManagement;
+
 
 
 
@@ -41,6 +44,9 @@ public class CoachManagement extends AppCompatActivity implements AdapterView.On
         recyclerViewCoachManagement = (RecyclerView) findViewById(R.id.coachManagementRecyclerView);
         imgButtonAddCoach = (ImageButton) findViewById(R.id.addCoachButton);
         edtCoachManagementSearch = (EditText) findViewById(R.id.coachManagementSearchEditText);
+        toolbarTitleCoachManagement = (TextView) findViewById(R.id.title);
+        toolbarTitleCoachManagement.setText(R.string.coach_management);
+        
         listCoachManagementItem = new ArrayList<Coach>();
         listCoachManagementItem.add(new Coach());
         listCoachManagementItem.add(new Coach());
