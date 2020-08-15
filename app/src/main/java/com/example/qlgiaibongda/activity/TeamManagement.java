@@ -11,10 +11,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.ListTeamManagementAdapter;
 import com.example.qlgiaibongda.model.Team;
+import com.google.android.material.appbar.AppBarLayout;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +31,8 @@ public class TeamManagement extends AppCompatActivity implements AdapterView.OnI
     private EditText edtTeamManagementSearch;
     ArrayList<Team> listTeamManagementItem;
     private ListTeamManagementAdapter listTeamManagementAdapter;
+    private AppBarLayout appBarLayoutTeamManagement;
+    private TextView toolbarTitleTeamManagement;
 
 
 
@@ -44,6 +51,11 @@ public class TeamManagement extends AppCompatActivity implements AdapterView.OnI
         recyclerViewTeamManagement = (RecyclerView) findViewById(R.id.teamManagementRecyclerView);
         imgButtonAddTeam = (ImageButton) findViewById(R.id.addTeamButton);
         edtTeamManagementSearch = (EditText) findViewById(R.id.teamManagementSearchEditText);
+        appBarLayoutTeamManagement = (AppBarLayout) findViewById(R.id.appbarTeamManagement);
+        toolbarTitleTeamManagement = (TextView) findViewById(R.id.title);
+        toolbarTitleTeamManagement.setText(R.string.team_management);
+
+
         listTeamManagementItem = new ArrayList<Team>();
         listTeamManagementItem.add(new Team());
         listTeamManagementItem.add(new Team());
