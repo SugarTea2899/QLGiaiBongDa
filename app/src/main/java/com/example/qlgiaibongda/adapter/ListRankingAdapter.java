@@ -15,7 +15,7 @@ import com.example.qlgiaibongda.model.Team;
 
 import java.util.ArrayList;
 
-public class ListRankingAdapter extends RecyclerView.Adapter<ListRankingAdapter.TeamViewHolder> {
+        public class ListRankingAdapter extends RecyclerView.Adapter<ListRankingAdapter.TeamViewHolder> {
     public ArrayList<Team> listTeam;
     private Context context;
     private onItemClickListener mOnItemClickListener;

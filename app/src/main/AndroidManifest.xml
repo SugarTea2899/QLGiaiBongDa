@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AddMatch"></activity>
+        <activity android:name=".activity.SelectedList"></activity>
+        <activity android:name=".activity.AddMatch" />
         <activity android:name=".activity.MatchManager" />
         <activity android:name=".activity.AddReferee" />
         <activity android:name=".activity.AddCoach" />
