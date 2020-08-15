@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/grey_border">
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/redCardImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_red_card"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="THẺ ĐỎ"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_toEndOf="@id/redCardImage"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/minuteOfMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="70'"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/redCardImage"
+            android:background="@color/colorGray"
+            android:layout_marginTop="5dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@id/title" >
+        <TextView
+            android:id="@+id/namePlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marcus Rashford"
+            android:layout_marginBottom="5dp"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+        <ImageView
+            android:id="@+id/logoClub"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/manutd"
+            android:layout_below="@id/namePlayer"
+            android:layout_marginEnd="10dp"/>
+        <TextView
+            android:id="@+id/nameClub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manchester United"
+            android:layout_below="@id/namePlayer"
+            android:layout_toEndOf="@id/logoClub"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageOfPlayer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/old_trafford"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</RelativeLayout>

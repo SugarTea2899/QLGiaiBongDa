@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="210dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/grey_border">
+     <RelativeLayout
+         android:id="@+id/title"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:padding="10dp"
+         android:background="@color/colorBlue600">
+         <ImageView
+             android:id="@+id/football_ball"
+             android:layout_width="30dp"
+             android:layout_height="30dp"
+             android:src="@drawable/icon_football_ball"
+             android:layout_centerHorizontal="true"/>
+         <TextView
+             android:id="@+id/vaoText"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="VÀOOOOO!!!"
+             style="@style/TextAppearance.AppCompat.Title"
+             android:textColor="#ffffff"
+             android:layout_below="@id/football_ball"
+             android:layout_centerHorizontal="true"/>
+         <TextView
+             android:id="@+id/minuteOfMatch"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="50'"
+             style="@style/TextAppearance.AppCompat.Title"
+             android:textColor="#ffffff"
+             android:layout_below="@id/vaoText"
+             android:layout_centerHorizontal="true"/>
+     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@id/title" >
+        <TextView
+            android:id="@+id/namePlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marcus Rashford"
+            android:layout_marginBottom="5dp"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+        <ImageView
+            android:id="@+id/logoClub"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/manutd"
+            android:layout_below="@id/namePlayer"
+            android:layout_marginEnd="10dp"/>
+        <TextView
+            android:id="@+id/nameClub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manchester United"
+            android:layout_below="@id/namePlayer"
+            android:layout_toEndOf="@id/logoClub"/>
+        <TextView
+            android:id="@+id/typeGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bàn thắng phạt đền"
+            android:layout_below="@id/nameClub"
+            android:textColor="@color/colorRed900"
+            android:layout_marginTop="5dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageOfPlayer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/old_trafford"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</RelativeLayout>
