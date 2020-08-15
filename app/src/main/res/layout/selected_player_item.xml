@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/tvPlayerNumber"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:text="99"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"/>
+
+    <ImageView
+        android:id="@+id/imvPlayerAvatar"
+        android:layout_width="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_height="45dp"
+        android:scaleType="fitXY"
+        android:layout_toRightOf="@id/tvPlayerNumber"
+        android:src="@drawable/ed0ba0_x4aa_ony"/>
+
+    <TextView
+        android:id="@+id/tvPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ronaldo"
+        android:layout_toRightOf="@id/imvPlayerAvatar"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tvPlayerType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tiền đạo"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:layout_toRightOf="@id/imvPlayerAvatar"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/tvPlayerName"/>
+
+
+    <ImageButton
+        android:id="@+id/btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_arrow_forward"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        />
+
+    <ImageView
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/line"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/imvPlayerAvatar"/>
+</RelativeLayout>
