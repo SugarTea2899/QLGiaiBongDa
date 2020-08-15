@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.Login" />
+        <activity android:name=".activity.RefereeManagement"></activity>
         <activity android:name=".activity.MatchInfo" />
         <activity android:name=".activity.CoachManagement" />
         <activity android:name=".activity.TeamManagement" />
