@@ -116,67 +116,67 @@
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
-                        <RelativeLayout
-                            android:id="@+id/labelRankedTable"
+                        <LinearLayout
+                            android:id="@+id/title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/rankedTextView"
-                            android:layout_marginTop="5dp"
-                            android:background="@drawable/grey_rectangle_fill">
-
+                            android:orientation="horizontal"
+                            android:weightSum="10"
+                            android:background="@drawable/grey_background_radius"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentTop="true"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="80dp"
-                                android:layout_marginTop="5dp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.5"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5.5"
                                 android:text="Câu lạc bộ"
-                                android:textSize="20sp" />
+                                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:text="ĐĐ"
+                                    style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:text="HS"
+                                    style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:text="Đ"
+                                    style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+                            </RelativeLayout>
+                        </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/labelPointRankedTable"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="5dp"
-                                android:text="Đ"
-                                android:textAlignment="center"
-                                android:textSize="20sp" />
 
-                            <TextView
-                                android:id="@+id/labelGDRankedTable"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:layout_toLeftOf="@id/labelPointRankedTable"
-                                android:text="HS"
-                                android:textAlignment="center"
-                                android:textSize="20sp" />
-
-                            <TextView
-
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:layout_toLeftOf="@id/labelGDRankedTable"
-                                android:text="ĐĐ"
-                                android:textAlignment="center"
-                                android:textSize="20sp" />
-
-                        </RelativeLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/topRankedRecyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/labelRankedTable"
+                            android:layout_below="@id/title"
                             android:layout_marginTop="10dp"
 
                             />
