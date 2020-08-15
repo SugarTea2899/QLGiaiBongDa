@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TeamManagement">
+    tools:context=".activity.RefereeManagement">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarTeamManagement"
+        android:id="@+id/appbarRefereeManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/toolBarTeamManagement"
+            android:id="@+id/toolBarRefereeManagement"
             layout="@layout/appbar_1"
             />
 
@@ -21,27 +21,27 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/teamManageSearchBar"
+        android:id="@+id/refereeManageSearchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/appbarTeamManagement"
+        android:layout_below="@id/appbarRefereeManagement"
         android:layout_margin="10dp"
         android:background="@drawable/grey_background_radius">
         <EditText
-            android:id="@+id/teamManagementSearchEditText"
+            android:id="@+id/refereeManagementSearchEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             android:inputType="text"
             android:hint="Tìm trận đấu"
             android:layout_marginStart="10dp"
-            android:layout_toStartOf="@id/teamManageSearch"
+            android:layout_toStartOf="@id/refereeManageSearch"
             android:layout_alignParentStart="true"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:layout_centerVertical="true"/>
         <ImageButton
-            android:id="@+id/teamManageSearch"
+            android:id="@+id/refereeManageSearch"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_action_search2"
@@ -54,13 +54,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/teamManageSearchBar"
+        android:layout_below="@id/refereeManageSearchBar"
         android:layout_margin="5dp"
-        android:id="@+id/teamManagementRecyclerView"
+        android:id="@+id/refereeManagementRecyclerView"
 
         />
     <ImageButton
-        android:id="@+id/addTeamButton"
+        android:id="@+id/addRefereeButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@mipmap/ic_action_add"
@@ -70,6 +70,5 @@
         android:background="@color/colorTransparent"
         android:scaleType="fitXY"
         />
-
 
 </RelativeLayout>
