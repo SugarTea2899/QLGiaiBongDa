@@ -13,6 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.RuleLeague"></activity>
+        <activity android:name=".activity.Splash"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.Login" />
+        <activity android:name=".activity.RefereeManagement"></activity>
         <activity android:name=".activity.MatchInfo" />
         <activity android:name=".activity.CoachManagement" />
         <activity android:name=".activity.TeamManagement" />
@@ -32,13 +42,8 @@
         <activity android:name=".activity.ListMatchesActivity" />
         <activity android:name=".activity.PlayerDetail" />
         <activity android:name=".activity.ClubDetail" />
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".activity.MainActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
