@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.TeamManagement"></activity>
+        <activity android:name=".activity.SelectedList"></activity>
         <activity android:name=".activity.AddMatch" />
         <activity android:name=".activity.MatchManager" />
         <activity android:name=".activity.AddReferee" />
