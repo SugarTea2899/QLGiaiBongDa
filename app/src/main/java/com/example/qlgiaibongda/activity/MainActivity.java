@@ -22,12 +22,14 @@ import com.example.qlgiaibongda.adapter.ItemMatchRound;
 import com.example.qlgiaibongda.adapter.ListMatchRoundAdapter;
 import com.example.qlgiaibongda.adapter.ItemRankTeam;
 import com.example.qlgiaibongda.adapter.ItemRankTeamAdapter;
+import com.example.qlgiaibongda.adapter.ListRankingAdapter;
 import com.example.qlgiaibongda.model.Match;
+import com.example.qlgiaibongda.model.Team;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ListMatchRoundAdapter.onItemClickListener{
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, ListMatchRoundAdapter.onItemClickListener, ListRankingAdapter.onItemClickListener {
 
     private Toolbar toolbar;
     private DrawerLayout mainDrawerLayout;
@@ -38,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private RecyclerView topRankedRecyclerView;
     ArrayList<ItemDrawer> itemDrawerArrayList;
     ArrayList<Match> itemMatchRoundArrayList;
-    ArrayList<ItemRankTeam> itemRankTeamArrayList;
+    ArrayList<Team> itemRankTeamArrayList;
     ItemDrawerAdapter itemDrawerAdapter;
     ListMatchRoundAdapter itemMatchRoundAdapter;
-    ItemRankTeamAdapter itemRankTeamAdapter;
+    ListRankingAdapter itemRankTeamAdapter;
 
     private TextView justTest;
     @Override
@@ -57,11 +59,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //test here
           justTest = (TextView) findViewById(R.id.roundNumberTextView);
-
           justTest.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  Intent intent = new Intent(MainActivity.this, ClubDetail.class);
+                  Intent intent = new Intent(MainActivity.this, CoachManagement.class);
                   startActivity(intent);
               }
           });
@@ -107,27 +108,25 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         roundMatchRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         itemMatchRoundAdapter = new ListMatchRoundAdapter(itemMatchRoundArrayList,MainActivity.this,MainActivity.this);
         roundMatchRecyclerView.setAdapter(itemMatchRoundAdapter);
+
+
     }
 
     private void addTopTeam() {
         itemRankTeamArrayList = new ArrayList<>();
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
+        itemRankTeamArrayList.add(new Team());
 
-
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_keep_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_down_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-        itemRankTeamArrayList.add(new ItemRankTeam("20", R.drawable.ic_up_rank, R.drawable.ic_more_info, "Man United", "38", "-20", "100"));
-
-
-
-        itemRankTeamAdapter = new ItemRankTeamAdapter(this, R.layout.ranked_team_row,itemRankTeamArrayList);
-        //topRankedRecyclerView.setAdapter(itemRankTeamAdapter);
+        topRankedRecyclerView.setLayoutManager((new LinearLayoutManager(this)));
+        itemRankTeamAdapter = new ListRankingAdapter(itemRankTeamArrayList, MainActivity.this, MainActivity.this);
+        topRankedRecyclerView.setAdapter(itemRankTeamAdapter);
 
     }
 
