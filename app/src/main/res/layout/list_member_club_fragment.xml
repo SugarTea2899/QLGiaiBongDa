@@ -56,14 +56,12 @@
                     android:id="@+id/nameHlv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jamie Vardy"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_marginBottom="5dp"/>
                 <TextView
                     android:id="@+id/nationalityHlv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Spain"
                     android:layout_below="@id/nameHlv"
                     android:textSize="18sp"/>
             </RelativeLayout>

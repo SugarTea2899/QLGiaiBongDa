@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,15 +14,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.MatchProgressAdapter;
+import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.MatchStatDetails;
+import com.example.qlgiaibongda.retrofit.APIUtils;
+import com.example.qlgiaibongda.retrofit.DataClient;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MatchProgressFragment extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private MatchProgressAdapter matchProgressAdapter;
+    private Match matchInfo;
+    private ArrayList<MatchStatDetails> listDetails;
+
+    public MatchProgressFragment(Match matchInfo) {
+        this.matchInfo = matchInfo;
+    }
 
     @Nullable
     @Override
@@ -38,22 +54,37 @@ public class MatchProgressFragment extends Fragment {
     }
 
     private void getWidget() {
-        List<MatchStatDetails> list = new ArrayList<>();
-        list.add(new MatchStatDetails(6));
-        list.add(new MatchStatDetails(5));
-        list.add(new MatchStatDetails(4));
-        list.add(new MatchStatDetails(2));
-        list.add(new MatchStatDetails(2));
-        list.add(new MatchStatDetails(1));
-        list.add(new MatchStatDetails(4));
-        matchProgressAdapter = new MatchProgressAdapter(getContext(), list);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.rcvProgressMatch);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(matchProgressAdapter);
     }
 
     private void setEvent() {
+        DataClient dataClient = APIUtils.getData();
+        Call<List<MatchStatDetails>> callBackDetails = dataClient.getMatchDetails(matchInfo.getId());
+        callBackDetails.enqueue(new Callback<List<MatchStatDetails>>() {
+            @Override
+            public void onResponse(Call<List<MatchStatDetails>> call, Response<List<MatchStatDetails>> response) {
+                if (response.isSuccessful()) {
+                    listDetails = (ArrayList<MatchStatDetails>) response.body();
+                    for (int i = 0; i < listDetails.size(); i++) {
+                        if (listDetails.get(i).getType() == 3) {
+                            listDetails.remove(i);
+                            i--;
+                        }
+                    }
+                    Collections.reverse(listDetails);
+                    matchProgressAdapter = new MatchProgressAdapter(getContext(), listDetails, matchInfo);
+                    recyclerView.setAdapter(matchProgressAdapter);
+                }
+                else {
+                    Toast.makeText(getContext(), "Không tìm thấy thông tin trận đấu", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<MatchStatDetails>> call, Throwable t) {
+                Toast.makeText(getContext(), "Không tìm thấy thông tin trận đấu", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

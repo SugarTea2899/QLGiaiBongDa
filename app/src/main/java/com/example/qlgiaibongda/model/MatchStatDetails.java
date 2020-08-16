@@ -15,12 +15,18 @@ public class MatchStatDetails {
     String playerId;
     String outId;
     String inId;
+    Player playerIn;
+    Player playerOut;
+
+    public void setPlayerOut(Player playerOut) {
+        this.playerOut = playerOut;
+    }
 
     public MatchStatDetails(Integer type) {
         this.type = type;
     }
 
-    public MatchStatDetails(String matchId, Integer type, Integer minute, Boolean isHomeTeam, String playerId, String outId, String inId) {
+    public MatchStatDetails(String matchId, Integer type, Integer minute, Boolean isHomeTeam, String playerId, String outId, String inId, Player playerIn, Player playerOut) {
         this.matchId = matchId;
         this.type = type;
         this.minute = minute;
@@ -28,6 +34,8 @@ public class MatchStatDetails {
         this.playerId = playerId;
         this.outId = outId;
         this.inId = inId;
+        this.playerIn = playerIn;
+        this.playerOut = playerOut;
     }
 
     public String getId() {
@@ -92,5 +100,21 @@ public class MatchStatDetails {
 
     public void setInId(String inId) {
         this.inId = inId;
+    }
+
+    public Player getPlayerIn() {
+        return playerIn;
+    }
+
+    public void setPlayerIn(Player playerIn) {
+        this.playerIn = playerIn;
+    }
+
+    public Player getPlayerOut() {
+        return playerOut;
+    }
+
+    public void setPlayOut(Player playerOut) {
+        this.playerOut = playerOut;
     }
 }

@@ -18,6 +18,7 @@ import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.SelectPlayerAdapter;
 import com.example.qlgiaibongda.adapter.SelectedPlayerAdapter;
 import com.example.qlgiaibongda.constant.Constant;
+import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.Player;
 
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ public class SelectedListFragment extends Fragment {
     private ImageButton btnFunction;
     private View view;
     private ArrayList<Player> listPlayer;
+    private Match matchInfo;
+
+    public SelectedListFragment(Match matchInfo) {
+        this.matchInfo = matchInfo;
+    }
 
     @Nullable
     @Override

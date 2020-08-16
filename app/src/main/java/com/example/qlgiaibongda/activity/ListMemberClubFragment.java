@@ -84,7 +84,6 @@ public class ListMemberClubFragment extends Fragment implements ListMemberClubAd
         tvNameCoach = (TextView) view.findViewById(R.id.nameHlv);
         tvNationalityCoach = (TextView) view.findViewById(R.id.nationalityHlv);
         imvCoach = (ImageView) view.findViewById(R.id.imageOfHlv);
-        imvNationality = (ImageView) view.findViewById(R.id.imageNationality);
     }
 
     private void setEvent() {

@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.TabLayoutMatchInfoAdapter;
@@ -26,10 +28,14 @@ import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.example.qlgiaibongda.retrofit.DataClient;
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MatchInfo extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -42,8 +48,15 @@ public class MatchInfo extends AppCompatActivity {
     private ImageButton imbRemoveMatch;
     private ImageButton imbEditMatch;
     private ImageButton imbMenu;
+    private ImageView imvHomeLogo;
+    private ImageView imvGuestLogo;
+    private TextView tvDateStart;
+    private TextView tvResult;
+    private TextView tvRound;
+    private TextView tvNameHome;
+    private TextView tvNameGuest;
 
-    private String matchId;
+    private String matchId = "5ee4b5f0b06109245439416c";
     private Match matchInfo;
 
     @Override
@@ -58,25 +71,65 @@ public class MatchInfo extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("THÔNG SỐ"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tvDateStart = (TextView) findViewById(R.id.dateOfMatch);
+        tvResult = (TextView) findViewById(R.id.resultOfMatch);
+        tvRound = (TextView) findViewById(R.id.roundOfMatch);
+        tvNameHome = (TextView) findViewById(R.id.nameHomeClub);
+        tvNameGuest = (TextView) findViewById(R.id.nameGuestClub);
 
-        final TabLayoutMatchInfoAdapter adapter = new TabLayoutMatchInfoAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        DataClient dataClient = APIUtils.getData();
+        Call<Match> callBackMatchInfo = dataClient.getMatchInfo(matchId);
+        callBackMatchInfo.enqueue(new Callback<Match>() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
+            public void onResponse(Call<Match> call, Response<Match> response) {
+                if (response.isSuccessful()) {
+                    matchInfo = (Match) response.body();
+
+                    Date date = matchInfo.getDateStart();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    tvDateStart.setText(sdf.format(date));
+
+                    if (matchInfo.getStateMatch() == 0) {
+                        tvResult.setText("-");
+                    }
+                    else {
+                        tvResult.setText(matchInfo.getHomeGoal().toString() + " - " + matchInfo.getGuestGoal().toString());
+                    }
+                    tvRound.setText("Vòng " + matchInfo.getRound().toString());
+                    tvNameHome.setText(matchInfo.getHomeTeam());
+                    tvNameGuest.setText(matchInfo.getGuestTeam());
+
+                    final TabLayoutMatchInfoAdapter adapter = new TabLayoutMatchInfoAdapter(getApplicationContext(),getSupportFragmentManager(), tabLayout.getTabCount(), matchInfo);
+                    viewPager.setAdapter(adapter);
+
+                    viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                    tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                        @Override
+                        public void onTabSelected(TabLayout.Tab tab) {
+                            viewPager.setCurrentItem(tab.getPosition());
+                        }
+
+                        @Override
+                        public void onTabUnselected(TabLayout.Tab tab) {
+
+                        }
+
+                        @Override
+                        public void onTabReselected(TabLayout.Tab tab) {
+
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Không tìm thấy", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onFailure(Call<Match> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Không tìm thấy thông tin trận đấu", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
@@ -115,7 +168,7 @@ public class MatchInfo extends AppCompatActivity {
         imbRemoveMatch = (ImageButton) findViewById(R.id.removeMatch);
         imbEditMatch = (ImageButton) findViewById(R.id.editMatch);
 
-        imbMenu = (ImageButton) findViewById(R.id.menuOptions);
+        imbMenu = (ImageButton) findViewById(R.id.menuButton);
         imbMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
