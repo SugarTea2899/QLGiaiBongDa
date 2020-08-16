@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MatchInfo" />
+        <activity android:name=".activity.EditPlayer" />
         <activity android:name=".activity.CoachManagement" />
         <activity android:name=".activity.TeamManagement" />
         <activity android:name=".activity.SelectedList" />

@@ -1,7 +1,9 @@
 package com.example.qlgiaibongda.activity;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -55,8 +58,9 @@ public class PlayerDetail extends AppCompatActivity {
 
 
     private boolean menuOn = false;
+    private Player player;
 
-
+    private final int REQUEST_EDIT_CODE = 1;
     private String playerId = "5f38d13cf79803402ca4d281";
 
     @Override
@@ -106,7 +110,7 @@ public class PlayerDetail extends AppCompatActivity {
             @Override
             public void onResponse(Call<Player> call, Response<Player> response) {
                 if (response.isSuccessful()){
-                    Player player = (Player) response.body();
+                    player = (Player) response.body();
 
                     tvPlayerName.setText(player.getName());
                     tvPlayerNumber.setText(String.valueOf(player.getNumber()));
@@ -121,7 +125,7 @@ public class PlayerDetail extends AppCompatActivity {
                     if (player.getAvatar() == null || player.getAvatar().length() == 0){
                         Picasso.get().load(R.drawable.no_avatar).into(circleImageView);
                     }else{
-                        Picasso.get().load(player.getAvatar()).error(R.drawable.no_avatar).into(circleImageView);
+                        Picasso.get().load(APIUtils.BASE_URL + player.getAvatar()).error(R.drawable.no_avatar).into(circleImageView);
                     }
 
                     if (player.getTeamId() != null){
@@ -132,7 +136,11 @@ public class PlayerDetail extends AppCompatActivity {
                                 if (response.isSuccessful()){
                                     Team team = (Team) response.body();
                                     tvTeam.setText(team.getName());
-                                    Picasso.get().load(team.getLogo()).error(R.drawable.no_image).into(imvTeamLogo);
+                                    if (team.getLogo() == null || team.getLogo().length() == 0){
+                                        Picasso.get().load(R.drawable.no_image).into(imvTeamLogo);
+                                    }else{
+                                        Picasso.get().load(APIUtils.BASE_URL + team.getLogo()).error(R.drawable.no_image).into(imvTeamLogo);
+                                    }
                                     dialog.dismiss();
                                 }else{
                                     Toast.makeText(getApplicationContext(), "Lỗi load dữ liệu", Toast.LENGTH_SHORT).show();
@@ -168,21 +176,26 @@ public class PlayerDetail extends AppCompatActivity {
             }
         });
     }
+
+    private void changeButton(){
+        if (menuOn){
+            btnEdit.setVisibility(View.GONE);
+            btnRemove.setVisibility(View.GONE);
+            btnSetCaptain.setVisibility(View.GONE);
+        }else{
+            btnEdit.setVisibility(View.VISIBLE);
+            btnRemove.setVisibility(View.VISIBLE);
+            btnSetCaptain.setVisibility(View.VISIBLE);
+        }
+
+        menuOn = !menuOn;
+    }
+
     private void setEvent(){
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (menuOn){
-                    btnEdit.setVisibility(View.GONE);
-                    btnRemove.setVisibility(View.GONE);
-                    btnSetCaptain.setVisibility(View.GONE);
-                }else{
-                    btnEdit.setVisibility(View.VISIBLE);
-                    btnRemove.setVisibility(View.VISIBLE);
-                    btnSetCaptain.setVisibility(View.VISIBLE);
-                }
-
-                menuOn = !menuOn;
+                changeButton();
             }
         });
 
@@ -192,6 +205,15 @@ public class PlayerDetail extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlayerDetail.this, EditPlayer.class);
+                intent.putExtra("playerId", playerId);
+                startActivityForResult(intent, REQUEST_EDIT_CODE);
+            }
+        });
     }
 
     private void checkState(){
@@ -199,6 +221,21 @@ public class PlayerDetail extends AppCompatActivity {
             btnMenu.setVisibility(View.VISIBLE);
         }else{
             btnMenu.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case REQUEST_EDIT_CODE:
+                if (resultCode == Activity.RESULT_OK)
+                {
+                    fillInfo();
+                    changeButton();
+                }
+
+                break;
         }
     }
 }

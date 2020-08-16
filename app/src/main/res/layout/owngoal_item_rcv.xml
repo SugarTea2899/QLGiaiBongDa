@@ -47,20 +47,12 @@
             android:text="Marcus Rashford"
             android:layout_marginBottom="5dp"
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
-        <ImageView
-            android:id="@+id/logoClub"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/manutd"
-            android:layout_below="@id/namePlayer"
-            android:layout_marginEnd="10dp"/>
         <TextView
             android:id="@+id/nameClub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manchester United"
-            android:layout_below="@id/namePlayer"
-            android:layout_toEndOf="@id/logoClub"/>
+            android:layout_below="@id/namePlayer"/>
         <TextView
             android:id="@+id/typeGoal"
             android:layout_width="wrap_content"
