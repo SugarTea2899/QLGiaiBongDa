@@ -40,6 +40,9 @@ public interface DataClient {
     @GET("player/teammate?")
     Call<List<Player>> getListPlayerTeam(@Query("teamId") String teamId);
 
+    @GET("player/info")
+    Call<Player> getPlayerInfo(@Query("playerId") String playerId);
+
     @GET("team/getInfo?")
     Call<Team> getInfoTeam(@Query("teamId") String teamId);
 
