@@ -1,8 +1,15 @@
 package com.example.qlgiaibongda.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Player {
+    @SerializedName("_id")
+    @Expose
+    private String id;
+
     private String name;
     private Date dob;
     private Integer type;
@@ -33,6 +40,14 @@ public class Player {
         this.totalCleanSheet = totalCleanSheet;
         this.avatar = avatar;
         this.number = number;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

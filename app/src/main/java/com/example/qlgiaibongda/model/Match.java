@@ -1,8 +1,15 @@
 package com.example.qlgiaibongda.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
-public class Match {
+public class Match implements Comparable<Match>{
+    @SerializedName("_id")
+    @Expose
+    private String id;
+
     private String homeTeam;
     private String guestTeam;
     private Date dateStart;
@@ -35,6 +42,14 @@ public class Match {
         this.homeRedCard = homeRedCard;
         this.guestRedCard = guestRedCard;
         this.stateMatch = stateMatch;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getHomeTeam() {
@@ -139,5 +154,14 @@ public class Match {
 
     public void setStateMatch(Integer stateMatch) {
         this.stateMatch = stateMatch;
+    }
+
+    @Override
+    public int compareTo(Match o) {
+        if (this.getDateStart().getTime() < o.getDateStart().getTime())
+            return 1;
+        else if (this.getDateStart().getTime() < o.getDateStart().getTime())
+            return -1;
+        return 0;
     }
 }
