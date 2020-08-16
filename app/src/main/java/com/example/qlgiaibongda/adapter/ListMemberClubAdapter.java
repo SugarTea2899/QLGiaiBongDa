@@ -1,6 +1,7 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +36,11 @@ public class ListMemberClubAdapter extends RecyclerView.Adapter<ListMemberClubAd
     }
 
     public void onBindViewHolder(@NonNull ListMemberClubAdapter.MemberViewHolder holder, int position) {
-        Player match = listMember.get(position);
-        holder.tvNumber.setText("1");
-        holder.tvNamePlayer.setText("Jamie Vardy");
+        Player player = listMember.get(position);
+        holder.tvNumber.setText(player.getNumber().toString());
+        holder.tvNamePlayer.setText(player.getName());
         holder.imvPlayer.setImageResource(R.drawable.old_trafford);
-        holder.imvNationality.setImageResource(R.drawable.spain);
-        holder.tvNationality.setText("Spain");
+        holder.tvNationality.setText(player.getNationality());
     }
 
     @Override
@@ -52,7 +52,6 @@ public class ListMemberClubAdapter extends RecyclerView.Adapter<ListMemberClubAd
         public TextView tvNumber;
         public TextView tvNamePlayer;
         public ImageView imvPlayer;
-        public ImageView imvNationality;
         public TextView tvNationality;
         public ImageButton imbDetail;
         public onItemClickListener itemClickListener;
@@ -62,7 +61,6 @@ public class ListMemberClubAdapter extends RecyclerView.Adapter<ListMemberClubAd
             tvNumber = (TextView) itemView.findViewById(R.id.numberPlayer);
             tvNamePlayer = (TextView) itemView.findViewById(R.id.namePlayer);
             imvPlayer = (ImageView) itemView.findViewById(R.id.imageOfPlayer);
-            imvNationality = (ImageView) itemView.findViewById(R.id.imageNationality);
             tvNationality = (TextView) itemView.findViewById(R.id.nationalityPlayer);
             imbDetail = (ImageButton) itemView.findViewById(R.id.btnSeeDetail);
             itemView.setOnClickListener(this);

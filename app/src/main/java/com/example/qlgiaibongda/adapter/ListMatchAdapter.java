@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.model.Match;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ListMatchAdapter extends RecyclerView.Adapter<ListMatchAdapter.MatchViewHolder> {
     public ArrayList<Match> listMatch;
@@ -39,12 +41,22 @@ public class ListMatchAdapter extends RecyclerView.Adapter<ListMatchAdapter.Matc
         Match match = listResult.get(position);
         holder.imvLogoHome.setImageResource(R.drawable.manutd);
         holder.imvLogoGuest.setImageResource(R.drawable.manutd);
-        holder.tvNameHome.setText("Manchester United");
-        holder.tvNameGuest.setText("Manchester United");
-        holder.tvGoalHome.setText("3");
-        holder.tvGoalGuest.setText("3");
-        holder.tvStateMatch.setText("KT");
-        holder.tvTimeMatch.setText("Th2, 20/7");
+        holder.tvNameHome.setText(match.getHomeTeam());
+        holder.tvNameGuest.setText(match.getGuestTeam());
+        if (match.getHomeGoal() != null)
+            holder.tvGoalHome.setText(match.getHomeGoal().toString());
+        if (match.getGuestGoal() != null)
+            holder.tvGoalGuest.setText(match.getGuestGoal().toString());
+        if (match.getStateMatch() == 0)
+            holder.tvStateMatch.setText("Chưa diễn ra");
+        else if (match.getStateMatch() == 1)
+            holder.tvStateMatch.setText("Đang diễn ra");
+        else if (match.getStateMatch() == 2)
+            holder.tvStateMatch.setText("KT");
+
+        Date date = match.getDateStart();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM");
+        holder.tvTimeMatch.setText(sdf.format(date));
     }
 
     @Override

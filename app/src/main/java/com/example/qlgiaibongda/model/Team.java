@@ -1,6 +1,13 @@
 package com.example.qlgiaibongda.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Team {
+    @SerializedName("_id")
+    @Expose
+    private String id;
+
     private String name;
     private String shortName;
     private String stadium;
@@ -12,6 +19,14 @@ public class Team {
 
     public Team() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Team(String name, String shortName, String stadium, String sponsor, String captainId, String coachId, Integer currentRanking, String logo) {

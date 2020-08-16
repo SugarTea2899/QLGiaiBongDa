@@ -7,8 +7,7 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:padding="10dp">
+        android:layout_weight="1">
         <TextView
             android:id="@+id/numberPlayer"
             android:layout_width="wrap_content"
@@ -39,20 +38,11 @@
             android:text="Jamie Vardy"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_marginBottom="5dp"/>
-        <ImageView
-            android:id="@+id/imageNationality"
-            android:layout_width="38dp"
-            android:layout_height="25dp"
-            android:src="@drawable/spain"
-            android:scaleType="fitXY"
-            android:layout_below="@id/namePlayer"
-            android:layout_marginEnd="5dp"/>
         <TextView
             android:id="@+id/nationalityPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Spain"
-            android:layout_toEndOf="@id/imageNationality"
             android:layout_below="@id/namePlayer"
             android:textSize="18sp"/>
     </RelativeLayout>

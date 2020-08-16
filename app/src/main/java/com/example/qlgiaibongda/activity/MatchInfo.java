@@ -21,10 +21,15 @@ import android.widget.TextView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.TabLayoutMatchInfoAdapter;
+import com.example.qlgiaibongda.model.Match;
+import com.example.qlgiaibongda.retrofit.APIUtils;
+import com.example.qlgiaibongda.retrofit.DataClient;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
 
 public class MatchInfo extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -34,6 +39,12 @@ public class MatchInfo extends AppCompatActivity {
     private ImageButton imvAddSubstitute;
     private ImageButton imvAddCard;
     private ImageButton imvEndMatch;
+    private ImageButton imbRemoveMatch;
+    private ImageButton imbEditMatch;
+    private ImageButton imbMenu;
+
+    private String matchId;
+    private Match matchInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +109,32 @@ public class MatchInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DisplayAddCardPopupDialog();
+            }
+        });
+
+        imbRemoveMatch = (ImageButton) findViewById(R.id.removeMatch);
+        imbEditMatch = (ImageButton) findViewById(R.id.editMatch);
+
+        imbMenu = (ImageButton) findViewById(R.id.menuOptions);
+        imbMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (imvAddCard.getVisibility() == View.GONE) {
+                    imvAddCard.setVisibility(View.VISIBLE);
+                    imvAddGoal.setVisibility(View.VISIBLE);
+                    imvAddSubstitute.setVisibility(View.VISIBLE);
+                    imvEndMatch.setVisibility(View.VISIBLE);
+                    imbEditMatch.setVisibility(View.VISIBLE);
+                    imbRemoveMatch.setVisibility(View.VISIBLE);
+                }
+                else {
+                    imvAddCard.setVisibility(View.GONE);
+                    imvAddGoal.setVisibility(View.GONE);
+                    imvAddSubstitute.setVisibility(View.GONE);
+                    imvEndMatch.setVisibility(View.GONE);
+                    imbEditMatch.setVisibility(View.GONE);
+                    imbRemoveMatch.setVisibility(View.GONE);
+                }
             }
         });
     }
