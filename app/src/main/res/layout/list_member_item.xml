@@ -12,7 +12,6 @@
             android:id="@+id/numberPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_centerInParent="true" />
     </RelativeLayout>
@@ -35,14 +34,12 @@
             android:id="@+id/namePlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jamie Vardy"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_marginBottom="5dp"/>
         <TextView
             android:id="@+id/nationalityPlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spain"
             android:layout_below="@id/namePlayer"
             android:textSize="18sp"/>
     </RelativeLayout>

@@ -6,6 +6,7 @@ import com.example.qlgiaibongda.model.MatchStatDetails;
 import com.example.qlgiaibongda.model.Player;
 import com.example.qlgiaibongda.model.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -25,6 +26,12 @@ public interface DataClient {
     @POST("account/authenticate")
     Call<ResponseBody> login(@Field("username") String userName, @Field("password") String pass);
 
+    @GET("player/teammate")
+    Call<List<Player>> getListPlayerTeam(@Query("teamId") String teamId);
+
+    @GET("team/getInfo")
+    Call<Team> getInfoTeam(@Query("teamId") String teamId);
+
     @GET("team/list")
     Call<List<Team>> getTeamList();
 
@@ -43,22 +50,21 @@ public interface DataClient {
     @POST("player/upload-avatar")
     Call<ResponseBody> uploadPlayerAvatar(@Query("id") String id ,@Part MultipartBody.Part avatar);
 
-    @GET("player/teammate?")
-    Call<List<Player>> getListPlayerTeam(@Query("teamId") String teamId);
-
     @GET("player/info")
     Call<Player> getPlayerInfo(@Query("playerId") String playerId);
 
-    @GET("team/getInfo?")
-    Call<Team> getInfoTeam(@Query("teamId") String teamId);
+    @GET("team/search?")
+    Call<ArrayList<Team>> getListSearchTeam(@Query("name") String name);
 
     @GET("coach/info?")
     Call<Coach> getInfoCoach(@Query("coachId") String coachId);
 
-    @GET("match/history?")
+    @GET("match/history")
     Call<List<Match>> getListMatchOfTeam(@Query("team") String team, @Query("stateMatch") Integer state);
 
-    @GET("match/detail?")
+    @GET("match/detail")
     Call<List<MatchStatDetails>> getMatchDetails(@Query("matchId") String matchId);
 
+    @GET("match/get-match-info")
+    Call<Match> getMatchInfo(@Query("matchId") String matchId);
 }

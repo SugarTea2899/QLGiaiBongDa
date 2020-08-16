@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
+<ScrollView android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="60dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/line_text"
                 android:paddingBottom="10dp"
-                android:text="MC"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -55,7 +55,6 @@
                     android:textSize="16dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="10"
                     android:textColor="#000000"/>
             </RelativeLayout>
 
@@ -80,7 +79,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="0"
                     android:textColor="#000000"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -109,7 +107,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    android:text="0"
                     android:textColor="#000000"/>
             </RelativeLayout>
 
@@ -136,7 +133,6 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="16dp"
-                    android:text="0"
                     android:textColor="#000000"/>
             </RelativeLayout>
         </LinearLayout>
@@ -161,7 +157,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/line_text"
                 android:paddingBottom="10dp"
-                android:text="MC"
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -189,7 +184,6 @@
                     android:textSize="16dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="10"
                     android:textColor="#000000"/>
             </RelativeLayout>
 
@@ -214,7 +208,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="0"
                     android:textColor="#000000"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -243,7 +236,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
                     android:textStyle="bold"
-                    android:text="0"
                     android:textColor="#000000"/>
             </RelativeLayout>
 
@@ -270,7 +262,6 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="16dp"
-                    android:text="0"
                     android:textColor="#000000"/>
             </RelativeLayout>
         </LinearLayout>

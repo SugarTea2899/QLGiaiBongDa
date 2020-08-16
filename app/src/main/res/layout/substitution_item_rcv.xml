@@ -61,20 +61,12 @@
             android:layout_marginBottom="5dp"
             android:layout_below="@id/stateSubstitute1"
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
-        <ImageView
-            android:id="@+id/logoClubIn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/manutd"
-            android:layout_below="@id/namePlayerIn"
-            android:layout_marginEnd="10dp"/>
         <TextView
             android:id="@+id/nameClubIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manchester United"
-            android:layout_below="@id/namePlayerIn"
-            android:layout_toEndOf="@id/logoClubIn"/>
+            android:layout_below="@id/namePlayerIn"/>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageOfPlayerIn"
             android:layout_width="50dp"
@@ -106,20 +98,12 @@
             android:layout_marginBottom="5dp"
             android:layout_below="@id/stateSubstitute2"
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
-        <ImageView
-            android:id="@+id/logoClubOut"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/manutd"
-            android:layout_below="@id/namePlayerOut"
-            android:layout_marginEnd="10dp"/>
         <TextView
             android:id="@+id/nameClubOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Manchester United"
-            android:layout_below="@id/namePlayerOut"
-            android:layout_toEndOf="@id/logoClubOut"/>
+            android:layout_below="@id/namePlayerOut"/>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageOfPlayerOut"
             android:layout_width="50dp"
