@@ -1,23 +1,26 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.AddReferee;
 import com.example.qlgiaibongda.model.Referee;
 
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ListRefereeManagementAdapter extends RecyclerView.Adapter<ListRefereeManagementAdapter.RefereeViewHolder> {
+public class ListRefereeManagementAdapter extends RecyclerView.Adapter<ListRefereeManagementAdapter.RefereeViewHolder>  {
     public ArrayList<Referee> listReferee;
     private Context context;
     private onItemClickListener mOnItemClickListener;
@@ -39,35 +42,66 @@ public class ListRefereeManagementAdapter extends RecyclerView.Adapter<ListRefer
     @Override
     public void onBindViewHolder(@NonNull RefereeViewHolder holder, int position) {
         Referee referee = listReferee.get(position);
-        holder.imgRefereeLogo.setImageResource(R.drawable.old_trafford);
-        holder.tvRefereeName.setText(String.format("Referee %d", position));
+        holder.imgRefereeLogo.setImageResource(R.drawable.manutd);
+        holder.tvRefereeName.setText(referee.getName());
+
+        holder.setmOnItemClickListener(new onItemClickListener() {
+            @Override
+            public void onItemClick(View v, int i) {
+                Toast.makeText(context,referee.getName(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, AddReferee.class);
+//                intent.putExtra("id",referee.getId());
+//                intent.putExtra("name", referee.getName());
+//                intent.putExtra("shortName",referee.getShortName());
+//                intent.putExtra("stadium",referee.getStadium());
+//                intent.putExtra("sponsor",referee.getSponsor());
+//                intent.putExtra("captainId",referee.getCaptainId());
+//                intent.putExtra("coachId", referee.getCoachId());
+//                intent.putExtra("currentRanking", referee.getCurrentRanking());
+//                intent.putExtra("logo",referee.getLogo());
+                context.startActivity(intent);
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
         return listReferee.size();
     }
 
+    public void filterList(ArrayList<Referee> filteredList) {
+        listReferee = filteredList;
+        notifyDataSetChanged();
+    }
+
+
     public class RefereeViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public CircleImageView imgRefereeLogo;
+        public ImageView imgRefereeLogo;
         public TextView tvRefereeName;
         public onItemClickListener itemClickListener;
 
 
+        public void setmOnItemClickListener (onItemClickListener _onItemClickListener){
+            this.itemClickListener = _onItemClickListener;
+        }
+
         public RefereeViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
             super(itemView);
-            imgRefereeLogo = (CircleImageView) itemView.findViewById(R.id.refereeManageRowLogoImageView);
+            imgRefereeLogo = (ImageView) itemView.findViewById(R.id.refereeManageRowLogoImageView);
             tvRefereeName = (TextView) itemView.findViewById(R.id.refereeManageRowNameTextView);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            itemClickListener.onItemClick(getAdapterPosition());
+            //itemClickListener.onItemClick(getAdapterPosition());
+            itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
     public interface onItemClickListener {
-        void onItemClick(int i);
+        void onItemClick(View v, int i);
     }
 }

@@ -1,16 +1,19 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.CoachDetail;
 import com.example.qlgiaibongda.model.Coach;
 
 import java.util.ArrayList;
@@ -40,7 +43,17 @@ public class ListCoachManagementAdapter extends RecyclerView.Adapter<ListCoachMa
     public void onBindViewHolder(@NonNull CoachViewHolder holder, int position) {
         Coach coach = listCoach.get(position);
         holder.imgCoachLogo.setImageResource(R.drawable.old_trafford);
-        holder.tvCoachName.setText("Manchester City");
+        holder.tvCoachName.setText(coach.getName());
+
+        holder.setmOnItemClickListener(new onItemClickListener() {
+            @Override
+            public void onItemClick(View v, int i) {
+                Toast.makeText(context,coach.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CoachDetail.class);
+//
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -48,10 +61,19 @@ public class ListCoachManagementAdapter extends RecyclerView.Adapter<ListCoachMa
         return listCoach.size();
     }
 
+    public void filterList(ArrayList<Coach> filteredList) {
+        listCoach = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class CoachViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
         public CircleImageView imgCoachLogo;
         public TextView tvCoachName;
         public onItemClickListener itemClickListener;
+
+        public void setmOnItemClickListener (onItemClickListener _onItemClickListener){
+            this.itemClickListener = _onItemClickListener;
+        }
 
 
         public CoachViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
@@ -61,13 +83,14 @@ public class ListCoachManagementAdapter extends RecyclerView.Adapter<ListCoachMa
             itemView.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View view) {
-            itemClickListener.onItemClick(getAdapterPosition());
+            itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
     public interface onItemClickListener {
-        void onItemClick(int i);
+        void onItemClick(View v, int i);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +9,14 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.AddPlayer;
+import com.example.qlgiaibongda.activity.PlayerManagement;
 import com.example.qlgiaibongda.model.Player;
 
 import java.util.ArrayList;
@@ -40,29 +44,48 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
     @Override
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         Player player = listPlayer.get(position);
-        holder.tvShirtNumber.setText(String.format("%d", position * 3));
+        holder.tvShirtNumber.setText(player.getNumber().toString());
         holder.imgPlayerPhoto.setImageResource(R.drawable.old_trafford);
-        holder.tvPlayerClub.setText("Manchester United");
-        holder.tvPlayerName.setText("Edwin Van der sar");
+        holder.tvPlayerClub.setText(PlayerManagement.teamIdToTeamNameHashMap.get(player.getTeamId()));
+        holder.tvPlayerName.setText(player.getName());
         holder.tvPlayerFreeAgent.setText("Cầu thủ tự do");
         holder.imgPlayerClub.setImageResource(R.drawable.manutd);
-        if (position % 2 == 0)
+        if (player.getTeamId() == null)
         {
+           // holder.tvPlayerFreeAgent.setText("Cầu thủ tự do");
             holder.tvPlayerFreeAgent.setVisibility(View.VISIBLE);
             holder.imgPlayerClub.setVisibility(View.INVISIBLE);
             holder.tvPlayerClub.setVisibility(View.INVISIBLE);
         }
         else
         {
+           // holder.tvPlayerFreeAgent.setText("Cầu thủ tự do");
             holder.tvPlayerFreeAgent.setVisibility(View.INVISIBLE);
             holder.imgPlayerClub.setVisibility(View.VISIBLE);
             holder.tvPlayerClub.setVisibility(View.VISIBLE);
         }
+
+
+        holder.setmOnItemClickListener(new onItemClickListener() {
+            @Override
+            public void onItemClick(View v, int i) {
+                Toast.makeText(context,player.getName(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, AddPlayer.class);
+//               
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return listPlayer.size();
+    }
+
+
+    public void filterList(ArrayList<Player> filteredList) {
+        listPlayer = filteredList;
+        notifyDataSetChanged();
     }
 
     public class PlayerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -74,6 +97,10 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
         public TextView tvPlayerFreeAgent;
         public ImageButton imgButtonMoreInfo;
         public onItemClickListener itemClickListener;
+
+        public void setmOnItemClickListener (onItemClickListener _onItemClickListener){
+            this.itemClickListener = _onItemClickListener;
+        }
 
         public PlayerViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
             super(itemView);
@@ -90,12 +117,12 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
 
         @Override
         public void onClick(View view) {
-            itemClickListener.onItemClick(getAdapterPosition());
+            itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
     public interface onItemClickListener {
-        void onItemClick(int i);
+        void onItemClick(View v, int i);
     }
 
 }

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
           justTest.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  Intent intent = new Intent(MainActivity.this, TeamManagement.class);
+                  Intent intent = new Intent(MainActivity.this, PlayerManagement.class);
                   startActivity(intent);
               }
           });

@@ -4,6 +4,7 @@ import com.example.qlgiaibongda.model.Coach;
 import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.MatchStatDetails;
 import com.example.qlgiaibongda.model.Player;
+import com.example.qlgiaibongda.model.Referee;
 import com.example.qlgiaibongda.model.Team;
 
 import java.util.ArrayList;
@@ -44,6 +45,9 @@ public interface DataClient {
     @GET("player/info")
     Call<Player> getPlayerInfo(@Query("playerId") String playerId);
 
+    @GET("player/search?")
+    Call<ArrayList<Player>> getListSearchPlayer(@Query("name") String name);
+
     @GET("team/getInfo?")
     Call<Team> getInfoTeam(@Query("teamId") String teamId);
 
@@ -53,10 +57,15 @@ public interface DataClient {
     @GET("coach/info?")
     Call<Coach> getInfoCoach(@Query("coachId") String coachId);
 
+    @GET("coach/search?")
+    Call<ArrayList<Coach>> getListSearchCoach(@Query("name") String name);
+
     @GET("match/history?")
     Call<List<Match>> getListMatchOfTeam(@Query("team") String team, @Query("stateMatch") Integer state);
 
     @GET("match/detail?")
     Call<List<MatchStatDetails>> getMatchDetails(@Query("matchId") String matchId);
 
+    @GET("referee/search?")
+    Call<ArrayList<Referee>> getListSearchReferee(@Query("name") String name);
 }
