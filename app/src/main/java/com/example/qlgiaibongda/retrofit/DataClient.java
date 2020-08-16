@@ -7,6 +7,7 @@ import com.example.qlgiaibongda.model.MatchStatDetails;
 import com.example.qlgiaibongda.model.Player;
 import com.example.qlgiaibongda.model.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -29,6 +30,9 @@ public interface DataClient {
     @GET("team/getInfo?")
     Call<Team> getInfoTeam(@Query("teamId") String teamId);
 
+    @GET("team/search?")
+    Call<ArrayList<Team>> getListSearchTeam(@Query("name") String name);
+
     @GET("coach/info?")
     Call<Coach> getInfoCoach(@Query("coachId") String coachId);
 
@@ -37,4 +41,5 @@ public interface DataClient {
 
     @GET("match/detail?")
     Call<List<MatchStatDetails>> getMatchDetails(@Query("matchId") String matchId);
+
 }

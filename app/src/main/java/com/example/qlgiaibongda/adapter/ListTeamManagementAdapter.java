@@ -1,29 +1,40 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.EditTeam;
+import com.example.qlgiaibongda.activity.TeamManagement;
 import com.example.qlgiaibongda.model.Team;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamManagementAdapter.TeamViewHolder> {
+public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamManagementAdapter.TeamViewHolder>  {
     public ArrayList<Team> listTeam;
+
     private Context context;
     private onItemClickListener mOnItemClickListener;
 
     public ListTeamManagementAdapter(ArrayList<Team> listTeam, Context context, onItemClickListener mOnItemClickListener) {
         this.listTeam = listTeam;
+
         this.context = context;
         this.mOnItemClickListener = mOnItemClickListener;
     }
@@ -40,19 +51,49 @@ public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamMana
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
         Team team = listTeam.get(position);
         holder.imgTeamLogo.setImageResource(R.drawable.manutd);
-        holder.tvTeamName.setText("Manchester City");
+        holder.tvTeamName.setText(team.getName());
+
+        holder.setmOnItemClickListener(new onItemClickListener() {
+            @Override
+            public void onItemClick(View v, int i) {
+                Toast.makeText(context,team.getName(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, EditTeam.class);
+//                intent.putExtra("id",team.getId());
+//                intent.putExtra("name", team.getName());
+//                intent.putExtra("shortName",team.getShortName());
+//                intent.putExtra("stadium",team.getStadium());
+//                intent.putExtra("sponsor",team.getSponsor());
+//                intent.putExtra("captainId",team.getCaptainId());
+//                intent.putExtra("coachId", team.getCoachId());
+//                intent.putExtra("currentRanking", team.getCurrentRanking());
+//                intent.putExtra("logo",team.getLogo());
+                context.startActivity(intent);
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
         return listTeam.size();
     }
 
+    public void filterList(ArrayList<Team> filteredList) {
+        listTeam = filteredList;
+        notifyDataSetChanged();
+    }
+
+
     public class TeamViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView imgTeamLogo;
         public TextView tvTeamName;
         public onItemClickListener itemClickListener;
 
+
+        public void setmOnItemClickListener (onItemClickListener _onItemClickListener){
+            this.itemClickListener = _onItemClickListener;
+        }
 
         public TeamViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
             super(itemView);
@@ -63,11 +104,12 @@ public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamMana
 
         @Override
         public void onClick(View view) {
-            itemClickListener.onItemClick(getAdapterPosition());
+            //itemClickListener.onItemClick(getAdapterPosition());
+            itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
     public interface onItemClickListener {
-        void onItemClick(int i);
+        void onItemClick(View v, int i);
     }
 }
