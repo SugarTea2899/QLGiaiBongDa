@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -76,6 +81,9 @@ public class AddPlayer extends AppCompatActivity {
 
     private String imagePath = null;
     private final int REQUEST_CODE_IMAGE = 99;
+    public static final int STORAGE_PERMISSION_CODE = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +92,7 @@ public class AddPlayer extends AppCompatActivity {
         tvTitle.setText("Thêm cầu thủ");
         setSupportActionBar(toolbar);
         setTitle(null);
+        checkPermission();
         initTypeSpinner();
         initTeamSpinner();
         setEvent();
@@ -202,7 +211,7 @@ public class AddPlayer extends AppCompatActivity {
         dialog.show();
 
         DataClient dataClient = APIUtils.getData();
-        Call<ResponseBody> callback = dataClient.addPlayer(playerName, playerDOB, typeSelected, playerNationality, teamSelected.getId(), null, number);
+        Call<ResponseBody> callback = dataClient.addPlayer(playerName, playerDOB, typeSelected, playerNationality, teamSelected.getId(), number);
         callback.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -213,22 +222,26 @@ public class AddPlayer extends AppCompatActivity {
 
                         if (imagePath != null){
                             File file = new File(imagePath);
-                            String fileName = file.getAbsolutePath();
-                            fileName = fileName.substring(fileName.lastIndexOf('/') + 1);
                             RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                            MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", fileName, requestBody);
+                            MultipartBody.Part body = MultipartBody.Part.createFormData("avatar", file.getName(), requestBody);
 
-                            DataClient dataClient1 = APIUtils.getData();
-                            Call<ResponseBody> callback1 = dataClient1.uploadPlayerAvatar(body, playerId);
+                            Call<ResponseBody> callback1 = dataClient.uploadPlayerAvatar(playerId, body);
                             callback1.enqueue(new Callback<ResponseBody>() {
                                 @Override
                                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                    Log.d("xxxx", response.isSuccessful() + "");
+                                    if (response.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "Thêm cầu thủ thành công", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "Thêm cầu thủ thất bại", Toast.LENGTH_SHORT).show();
+                                        dialog.dismiss();
+                                    }
                                 }
 
                                 @Override
                                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                    Log.d("xxxx", t.toString());
+                                    Toast.makeText(getApplicationContext(), "Thêm cầu thủ thất bại", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
                                 }
                             });
                         }
@@ -392,5 +405,25 @@ public class AddPlayer extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void checkPermission(){
+        if (ContextCompat.checkSelfPermission(AddPlayer.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Quyền đã được cấp.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "Ứng dụng cần quyền để tiếp tục.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
     }
 }

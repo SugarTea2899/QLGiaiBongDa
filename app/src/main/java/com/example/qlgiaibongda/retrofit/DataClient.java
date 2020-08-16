@@ -19,20 +19,19 @@ import retrofit2.http.Query;
 public interface DataClient {
 
     @FormUrlEncoded
-    @POST("account/authenticate")
+    @POST("/account/authenticate")
     Call<ResponseBody> login(@Field("username") String userName, @Field("password") String pass);
 
-    @GET("team/list")
+    @GET("/team/list")
     Call<List<Team>> getTeamList();
 
     @FormUrlEncoded
-    @POST("player/add")
+    @POST("/player/add")
     Call<ResponseBody> addPlayer(@Field("name") String name, @Field("dob") String dob, @Field("type") int type,
-                                 @Field("nationality") String nationality, @Field("teamId") String teamId,
-                                 @Field("avatar") String avatar, @Field("number") int playerNumber);
+                                 @Field("nationality") String nationality, @Field("teamId") String teamId, @Field("number") int playerNumber);
 
 
     @Multipart
-    @POST("player/upload-avatar?")
-    Call<ResponseBody> uploadPlayerAvatar(@Part MultipartBody.Part avatar, @Query("id") String id);
+    @POST("/player/upload-avatar")
+    Call<ResponseBody> uploadPlayerAvatar(@Query("id") String id ,@Part MultipartBody.Part avatar);
 }
