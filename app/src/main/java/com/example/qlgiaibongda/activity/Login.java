@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.example.qlgiaibongda.retrofit.DataClient;
+import com.example.qlgiaibongda.state.State;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -64,6 +65,7 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công.", Toast.LENGTH_SHORT).show();
+                            State.isLogined = true;
                             dialog.dismiss();
                         }else{
                             Toast.makeText(getApplicationContext(), "Đăng nhập thất bại.", Toast.LENGTH_SHORT).show();

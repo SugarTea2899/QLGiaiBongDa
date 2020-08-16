@@ -18,10 +18,7 @@ import com.example.qlgiaibongda.R;
 
 import com.example.qlgiaibongda.adapter.ItemDrawer;
 import com.example.qlgiaibongda.adapter.ItemDrawerAdapter;
-import com.example.qlgiaibongda.adapter.ItemMatchRound;
 import com.example.qlgiaibongda.adapter.ListMatchRoundAdapter;
-import com.example.qlgiaibongda.adapter.ItemRankTeam;
-import com.example.qlgiaibongda.adapter.ItemRankTeamAdapter;
 import com.example.qlgiaibongda.adapter.ListRankingAdapter;
 import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.Team;
@@ -63,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
               @Override
               public void onClick(View v) {
                   Intent intent = new Intent(MainActivity.this, Login.class);
+
                   startActivity(intent);
               }
           });
