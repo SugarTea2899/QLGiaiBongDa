@@ -66,12 +66,32 @@ public interface DataClient {
     @GET("team/search?")
     Call<ArrayList<Team>> getListSearchTeam(@Query("name") String name);
 
+    @FormUrlEncoded
+    @POST("team/add")
+    Call<ResponseBody> addTeam(@Field("name") String name, @Field("shortName") String shortName,
+                               @Field("stadium") String stadium, @Field("sponsor") String donors);
+
+    @FormUrlEncoded
+    @POST("team/update")
+    Call<ResponseBody> updateTeam(@Field("teamId") String teamId, @Field("name") String name, @Field("shortName") String shortName,
+                                  @Field("stadium") String stadium, @Field("sponsor") String donors, @Field("coachId") String coachId,
+                                  @Field("captainId") String captainId);
+
+
+
+    @Multipart
+    @POST("team/upload-logo")
+    Call<ResponseBody> uploadTeamLogo(@Query("id") String id ,@Part MultipartBody.Part logo);
+
     @GET("coach/info?")
     Call<Coach> getInfoCoach(@Query("coachId") String coachId);
 
 
     @GET("coach/search?")
     Call<ArrayList<Coach>> getListSearchCoach(@Query("name") String name);
+
+    @GET("coach/list")
+    Call<List<Coach>> getCoachList();
 
     @GET("match/history?")
     Call<List<Match>> getListMatchOfTeam(@Query("team") String team, @Query("stateMatch") Integer state);

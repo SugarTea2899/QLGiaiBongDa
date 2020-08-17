@@ -244,8 +244,10 @@ public class AddPlayer extends AppCompatActivity {
                                     dialog.dismiss();
                                 }
                             });
+                        }else{
+                            dialog.dismiss();
                         }
-                        dialog.dismiss();
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (IOException e) {

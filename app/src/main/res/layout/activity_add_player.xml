@@ -157,6 +157,7 @@
                 android:background="@drawable/stroke_edit_text"
                 android:paddingLeft="10dp"
                 android:paddingBottom="8dp"
+                android:inputType="number"
                 android:paddingTop="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
