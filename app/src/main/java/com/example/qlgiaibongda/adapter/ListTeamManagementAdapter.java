@@ -20,6 +20,7 @@ import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.activity.EditTeam;
 import com.example.qlgiaibongda.activity.TeamManagement;
 import com.example.qlgiaibongda.model.Team;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -48,6 +49,17 @@ public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamMana
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
         Team team = listTeam.get(position);
+        if (team.getLogo() == null || team.getLogo().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_image)
+                    .into(holder.imgTeamLogo);
+        }
+        else {
+            Picasso.get()
+                    .load(team.getLogo())
+                    .error(R.drawable.no_image)
+                    .into(holder.imgTeamLogo);
+        }
         holder.imgTeamLogo.setImageResource(R.drawable.manutd);
         holder.tvTeamName.setText(team.getName());
 

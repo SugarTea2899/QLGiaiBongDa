@@ -28,7 +28,6 @@
             android:id="@+id/minuteOfMatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50'"
             style="@style/TextAppearance.AppCompat.Title"
             android:textColor="#ffffff"
             android:layout_below="@id/vaoText"
@@ -44,14 +43,12 @@
             android:id="@+id/namePlayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marcus Rashford"
             android:layout_marginBottom="5dp"
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
         <TextView
             android:id="@+id/nameClub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Manchester United"
             android:layout_below="@id/namePlayer"/>
         <TextView
             android:id="@+id/typeGoal"
@@ -65,7 +62,6 @@
             android:id="@+id/imageOfPlayer"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/old_trafford"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>

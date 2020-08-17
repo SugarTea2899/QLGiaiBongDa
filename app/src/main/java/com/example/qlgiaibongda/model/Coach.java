@@ -13,11 +13,13 @@ public class Coach {
     private String name;
     private Date dob;
     private String nationality;
+    private String avatar;
 
-    public Coach(String name, Date dob, String nationality) {
+    public Coach(String name, Date dob, String nationality, String avatar) {
         this.name = name;
         this.dob = dob;
         this.nationality = nationality;
+        this.avatar = avatar;
     }
 
     public Coach() {
@@ -54,5 +56,13 @@ public class Coach {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

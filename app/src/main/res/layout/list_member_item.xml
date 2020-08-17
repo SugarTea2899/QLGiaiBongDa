@@ -21,7 +21,6 @@
         android:layout_width="0dp"
         android:layout_weight="1.5"
         android:layout_height="match_parent"
-        android:src="@drawable/old_trafford"
         android:scaleType="fitXY"
         android:padding="5dp"/>
 

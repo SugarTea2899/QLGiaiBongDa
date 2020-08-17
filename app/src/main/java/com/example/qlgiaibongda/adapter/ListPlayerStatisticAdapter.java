@@ -12,17 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.model.Player;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ListPlayerStatisticAdapter extends RecyclerView.Adapter<ListPlayerStatisticAdapter.PlayerViewHolder> {
     public ArrayList<Player> listPlayer;
     private Context context;
-    private onItemClickListener mOnItemClickListener;
-    public ListPlayerStatisticAdapter(ArrayList<Player> listPlayer, Context context, onItemClickListener mOnItemClickListener) {
+    public static int count = 1;
+    public ListPlayerStatisticAdapter(ArrayList<Player> listPlayer, Context context) {
         this.listPlayer = listPlayer;
         this.context = context;
-        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     @NonNull
@@ -30,16 +30,26 @@ public class ListPlayerStatisticAdapter extends RecyclerView.Adapter<ListPlayerS
     public PlayerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.player_statistic_item, parent, false);
-        return new PlayerViewHolder(itemView, mOnItemClickListener);
+        return new PlayerViewHolder(itemView);
     }
 
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
-        Player match = listPlayer.get(position);
-        holder.tvStt.setText("1");
-        holder.tvNamePlayer.setText("Jamie Vardy");
-        holder.imvLogoClub.setImageResource(R.drawable.manutd);
-        holder.tvNameClub.setText("Manchester United");
-        holder.tvGoals.setText("23");
+        Player player = listPlayer.get(position);
+        holder.tvStt.setText(String.valueOf(position + 1));
+        holder.tvNamePlayer.setText(player.getName());
+        if (player.getTeamInfo().getLogo() == null || player.getTeamInfo().getLogo().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_image)
+                    .into(holder.imvLogoClub);
+        }
+        else {
+            Picasso.get()
+                    .load(player.getTeamInfo().getLogo())
+                    .error(R.drawable.no_image)
+                    .into(holder.imvLogoClub);
+        }
+        holder.tvNameClub.setText(player.getTeamInfo().getName());
+        holder.tvGoals.setText(player.getTotalGoal());
     }
 
     @Override
@@ -47,31 +57,20 @@ public class ListPlayerStatisticAdapter extends RecyclerView.Adapter<ListPlayerS
         return listPlayer.size();
     }
 
-    public class PlayerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PlayerViewHolder extends RecyclerView.ViewHolder{
         public TextView tvStt;
         public TextView tvNamePlayer;
         public ImageView imvLogoClub;
         public TextView tvNameClub;
         public TextView tvGoals;
-        public onItemClickListener itemClickListener;
 
-        public PlayerViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
+        public PlayerViewHolder(@NonNull View itemView) {
             super(itemView);
             tvStt = (TextView) itemView.findViewById(R.id.numberPlayerStatistic);
             tvNamePlayer = (TextView) itemView.findViewById(R.id.namePlayerStatistic);
             imvLogoClub = (ImageView) itemView.findViewById(R.id.imageClubStatistic);
             tvNameClub = (TextView) itemView.findViewById(R.id.nameClubStatistic);
             tvGoals = (TextView) itemView.findViewById(R.id.numberGoalsStatistic);
-            itemView.setOnClickListener(this);
         }
-
-        @Override
-        public void onClick(View v) {
-            itemClickListener.onItemClick(getAdapterPosition());
-        }
-    }
-
-    public interface onItemClickListener {
-        void onItemClick(int i);
     }
 }

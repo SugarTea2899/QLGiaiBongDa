@@ -13,11 +13,13 @@ public class Referee {
     private String name;
     private Date dob;
     private String nationality;
+    private String avatar;
 
-    public Referee(String name, Date dob, String nationality) {
+    public Referee(String name, Date dob, String nationality, String avatar) {
         this.name = name;
         this.dob = dob;
         this.nationality = nationality;
+        this.avatar = avatar;
     }
 
     public Referee() {}
@@ -52,5 +54,13 @@ public class Referee {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

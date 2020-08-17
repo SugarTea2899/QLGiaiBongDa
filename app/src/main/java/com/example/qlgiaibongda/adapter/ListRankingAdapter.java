@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.model.Team;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,17 @@ import java.util.ArrayList;
         Team team = listTeam.get(position);
         holder.tvRank.setText(String.valueOf(position + 1));
         holder.imvState.setImageResource(R.drawable.ic_arrow_drop_down);
-        holder.imvLogoClub.setImageResource(R.drawable.manutd);
+        if (team.getLogo() == null || team.getLogo().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_image)
+                    .into(holder.imvLogoClub);
+        }
+        else {
+            Picasso.get()
+                    .load(team.getLogo())
+                    .error(R.drawable.no_image)
+                    .into(holder.imvLogoClub);
+        }
         holder.tvNameClub.setText("Manchester United");
         holder.tvMatchCount.setText("30");
         holder.tvCoefficient.setText("50");

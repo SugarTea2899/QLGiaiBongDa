@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
           justTest.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  Intent intent = new Intent(MainActivity.this, PlayerManagement.class);
+                  Intent intent = new Intent(MainActivity.this, ClubDetail.class);
                   startActivity(intent);
               }
           });
@@ -82,7 +82,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void actionMainMenu() {
         itemDrawerArrayList = new ArrayList<>();
-        itemDrawerArrayList.add(new ItemDrawer("Tìm kiếm", R.drawable.ic_action_search2));
+        itemDrawerArrayList.add(new ItemDrawer("Đăng nhập", R.drawable.ic_none));
+        itemDrawerArrayList.add(new ItemDrawer("Danh sách trận đấu", R.drawable.ic_none));
+        itemDrawerArrayList.add(new ItemDrawer("Danh sách đội bóng", R.drawable.ic_none));
+        itemDrawerArrayList.add(new ItemDrawer("Danh sách cầu thủ", R.drawable.ic_none));
+        itemDrawerArrayList.add(new ItemDrawer("Danh sách huấn luyện viên", R.drawable.ic_none));
+        itemDrawerArrayList.add(new ItemDrawer("Danh sách trọng tài", R.drawable.ic_none));
         itemDrawerAdapter = new ItemDrawerAdapter(this, R.layout.drawer_item_row,itemDrawerArrayList);
         menuListView.setAdapter(itemDrawerAdapter);
     }

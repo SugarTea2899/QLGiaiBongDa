@@ -22,12 +22,13 @@ public class Player {
     private Integer totalCleanSheet;
     private String avatar;
     private Integer number;
+    private Team teamInfo;
 
     public Player() {
 
     }
 
-    public Player(String name, Date dob, Integer type, String nationality, String teamId, Integer totalRedCard, Integer totalGoal, Integer totalAssist, Integer totalYellowCard, Integer totalCleanSheet, String avatar, Integer number) {
+    public Player(String name, Date dob, Integer type, String nationality, String teamId, Integer totalRedCard, Integer totalGoal, Integer totalAssist, Integer totalYellowCard, Integer totalCleanSheet, String avatar, Integer number, Team teamInfo) {
         this.name = name;
         this.dob = dob;
         this.type = type;
@@ -40,6 +41,7 @@ public class Player {
         this.totalCleanSheet = totalCleanSheet;
         this.avatar = avatar;
         this.number = number;
+        this.teamInfo = teamInfo;
     }
 
     public String getId() {
@@ -144,5 +146,13 @@ public class Player {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Team getTeamInfo() {
+        return teamInfo;
+    }
+
+    public void setTeamInfo(Team teamInfo) {
+        this.teamInfo = teamInfo;
     }
 }

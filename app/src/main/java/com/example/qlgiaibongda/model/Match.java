@@ -23,12 +23,14 @@ public class Match implements Comparable<Match>{
     private Integer homeRedCard;
     private Integer guestRedCard;
     private Integer stateMatch;
+    private String logoHome;
+    private String logoGuest;
 
     public Match() {
 
     }
 
-    public Match(String homeTeam, String guestTeam, Date dateStart, String stadium, String refereeId, Integer round, Integer homeGoal, Integer guestGoal, Integer homeYellowCard, Integer guestYellowCard, Integer homeRedCard, Integer guestRedCard, Integer stateMatch) {
+    public Match(String homeTeam, String guestTeam, Date dateStart, String stadium, String refereeId, Integer round, Integer homeGoal, Integer guestGoal, Integer homeYellowCard, Integer guestYellowCard, Integer homeRedCard, Integer guestRedCard, Integer stateMatch, String logoHome, String logoGuest) {
         this.homeTeam = homeTeam;
         this.guestTeam = guestTeam;
         this.dateStart = dateStart;
@@ -42,6 +44,8 @@ public class Match implements Comparable<Match>{
         this.homeRedCard = homeRedCard;
         this.guestRedCard = guestRedCard;
         this.stateMatch = stateMatch;
+        this.logoHome = logoHome;
+        this.logoGuest = logoGuest;
     }
 
     public String getId() {
@@ -154,6 +158,22 @@ public class Match implements Comparable<Match>{
 
     public void setStateMatch(Integer stateMatch) {
         this.stateMatch = stateMatch;
+    }
+
+    public String getLogoHome() {
+        return logoHome;
+    }
+
+    public void setLogoHome(String logoHome) {
+        this.logoHome = logoHome;
+    }
+
+    public String getLogoGuest() {
+        return logoGuest;
+    }
+
+    public void setLogoGuest(String logoGuest) {
+        this.logoGuest = logoGuest;
     }
 
     @Override

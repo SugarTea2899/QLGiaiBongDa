@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +37,7 @@ public class ListMatchesFragment extends Fragment implements ListMatchAdapter.on
     private ListMatchAdapter listMatchAdapter;
     private Team teamInfo;
     private ArrayList<Match> listMatch;
+    private static final int REQUEST_LIST_MATCH_FRAG = 300;
 
     public ListMatchesFragment(Team teamInfo) {
         this.teamInfo = teamInfo;
@@ -83,7 +87,15 @@ public class ListMatchesFragment extends Fragment implements ListMatchAdapter.on
     }
 
     @Override
-    public void onItemClick(int i) {
+    public void onItemClick(View v, int i) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_LIST_MATCH_FRAG && resultCode == Activity.RESULT_OK) {
+            setEvent();
+        }
     }
 }

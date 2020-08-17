@@ -38,7 +38,6 @@ public interface DataClient {
     Call<ResponseBody> addPlayer(@Field("name") String name, @Field("dob") String dob, @Field("type") int type,
                                  @Field("nationality") String nationality, @Field("teamId") String teamId, @Field("number") int playerNumber);
 
-
     @FormUrlEncoded
     @POST("player/update")
     Call<ResponseBody> updatePlayer(@Field("playerId") String playerId, @Field("name") String name, @Field("dob") String dob, @Field("type") int type,
@@ -51,13 +50,17 @@ public interface DataClient {
     @GET("player/info")
     Call<Player> getPlayerInfo(@Query("playerId") String playerId);
 
-
     @GET("player/search?")
     Call<ArrayList<Player>> getListSearchPlayer(@Query("name") String name);
 
+    @GET("player/get-all-player")
+    Call<List<Player>> getAllPlayer();
+
+    @GET("player/get-by-team-name")
+    Call<ResponseBody> getPlayerByTeamName(@Query("matchId") String matchId);
+
     @GET("team/getInfo?")
     Call<Team> getInfoTeam(@Query("teamId") String teamId);
-
 
     @GET("team/search?")
     Call<ArrayList<Team>> getListSearchTeam(@Query("name") String name);
@@ -65,9 +68,15 @@ public interface DataClient {
     @GET("coach/info?")
     Call<Coach> getInfoCoach(@Query("coachId") String coachId);
 
-
     @GET("coach/search?")
     Call<ArrayList<Coach>> getListSearchCoach(@Query("name") String name);
+
+    @GET("match/search")
+    Call<List<Match>> getListSearchMatch(@Query("name") String name);
+
+    @FormUrlEncoded
+    @POST("match/update-state")
+    Call<ResponseBody> endMatch(@Field("matchId") String matchId, @Field("stateMatch") Integer state);
 
     @GET("match/history?")
     Call<List<Match>> getListMatchOfTeam(@Query("team") String team, @Query("stateMatch") Integer state);
@@ -75,11 +84,14 @@ public interface DataClient {
     @GET("match/detail")
     Call<List<MatchStatDetails>> getMatchDetails(@Query("matchId") String matchId);
 
+    @FormUrlEncoded
+    @POST("match/add-detail")
+    Call<ResponseBody> addMatchDetail(@Field("matchId") String matchId, @Field("type") Integer type, @Field("minute") Integer minute,
+                                        @Field("isHomeTeam") Boolean isHomeTeam, @Field("playerId") String playerId, @Field("inId") String inId, @Field("outId") String outId);
 
     @GET("referee/search?")
     Call<ArrayList<Referee>> getListSearchReferee(@Query("name") String name);
 
     @GET("match/get-match-info")
     Call<Match> getMatchInfo(@Query("matchId") String matchId);
-
 }

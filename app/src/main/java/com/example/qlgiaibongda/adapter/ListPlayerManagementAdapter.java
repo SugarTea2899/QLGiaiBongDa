@@ -18,6 +18,7 @@ import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.activity.AddPlayer;
 import com.example.qlgiaibongda.activity.PlayerManagement;
 import com.example.qlgiaibongda.model.Player;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,17 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         Player player = listPlayer.get(position);
         holder.tvShirtNumber.setText(player.getNumber().toString());
-        holder.imgPlayerPhoto.setImageResource(R.drawable.old_trafford);
+        if (player.getAvatar() == null || player.getAvatar().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_avatar)
+                    .into(holder.imgPlayerPhoto);
+        }
+        else {
+            Picasso.get()
+                    .load(player.getAvatar())
+                    .error(R.drawable.no_avatar)
+                    .into(holder.imgPlayerPhoto);
+        }
         holder.tvPlayerClub.setText(PlayerManagement.teamIdToTeamNameHashMap.get(player.getTeamId()));
         holder.tvPlayerName.setText(player.getName());
         holder.tvPlayerFreeAgent.setText("Cầu thủ tự do");
