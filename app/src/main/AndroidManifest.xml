@@ -47,7 +47,6 @@
         <activity android:name=".activity.AddPlayer" />
         <activity android:name=".activity.ListMemberClubFragment" />
         <activity android:name=".activity.StatisticsLeague" />
-        <activity android:name=".activity.ListMatchesActivity" />
         <activity android:name=".activity.PlayerDetail" />
         <activity android:name=".activity.ClubDetail" />
         <activity android:name=".activity.MainActivity" />

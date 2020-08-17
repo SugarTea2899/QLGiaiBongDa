@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.activity.CoachDetail;
 import com.example.qlgiaibongda.model.Coach;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,17 @@ public class ListCoachManagementAdapter extends RecyclerView.Adapter<ListCoachMa
     @Override
     public void onBindViewHolder(@NonNull CoachViewHolder holder, int position) {
         Coach coach = listCoach.get(position);
-        holder.imgCoachLogo.setImageResource(R.drawable.old_trafford);
+        if (coach.getAvatar() == null || coach.getAvatar().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_avatar)
+                    .into(holder.imgCoachLogo);
+        }
+        else {
+            Picasso.get()
+                    .load(coach.getAvatar())
+                    .error(R.drawable.no_avatar)
+                    .into(holder.imgCoachLogo);
+        }
         holder.tvCoachName.setText(coach.getName());
 
         holder.setmOnItemClickListener(new onItemClickListener() {

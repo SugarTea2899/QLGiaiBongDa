@@ -4,33 +4,31 @@
     android:background="@drawable/border_radius"
     android:layout_margin="10dp"
     android:padding="10dp">
-    <RadioButton
-        android:id="@+id/homeTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đội nhà"
-        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
-    <RadioButton
-        android:id="@+id/guestTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đội khách"
-        android:layout_alignParentEnd="true"
-        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
-    <Spinner
-        android:id="@+id/spnPlayer1"
-        android:layout_below="@id/guestTeam"
+    <RadioGroup
+        android:id="@+id/radio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:background="@drawable/spinner_background"
-        android:paddingBottom="2dp"
-        android:textSize="22sp"
-        android:paddingTop="2dp"
-        android:layout_marginTop="20dp"/>
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <RadioButton
+            android:id="@+id/homeTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Đội nhà"
+            android:layout_weight="1"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+        <RadioButton
+            android:id="@+id/guestTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Đội khách"
+            android:layout_weight="1"
+            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"/>
+    </RadioGroup>
+
     <Spinner
-        android:id="@+id/spnPlayer2"
-        android:layout_below="@id/spnPlayer1"
+        android:id="@+id/spnPlayer1"
+        android:layout_below="@id/radio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -41,7 +39,7 @@
         android:layout_marginTop="20dp"/>
     <Spinner
         android:id="@+id/spnTypeGoal"
-        android:layout_below="@id/spnPlayer2"
+        android:layout_below="@id/spnPlayer1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
@@ -50,15 +48,27 @@
         android:textSize="22sp"
         android:paddingTop="2dp"
         android:layout_marginTop="20dp"/>
+    <EditText
+        android:id="@+id/edtMinute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnTypeGoal"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/stroke_edit_text"
+        android:hint="Thời gian (phút)"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="20sp" />
     <Button
+        android:id="@+id/btnConfirm"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Xác nhận"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
-        android:inputType="number"
         android:layout_marginTop="20dp"
         android:background="@color/blue600"
         android:textColor="#ffffff"
-        android:layout_below="@id/spnTypeGoal"/>
+        android:layout_below="@id/edtMinute"/>
 </RelativeLayout>

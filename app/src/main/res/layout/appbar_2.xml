@@ -6,7 +6,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageButton
-        android:id="@+id/backBtnAppBar2"
+        android:id="@+id/backBtn"
         android:background="@android:color/transparent"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -22,6 +22,7 @@
         android:src="@drawable/ic_setting"
         android:layout_gravity="end"
         android:layout_marginEnd="20dp"
+        android:visibility="invisible"
         />
 
 </androidx.appcompat.widget.Toolbar>

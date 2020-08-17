@@ -39,15 +39,27 @@
         android:textSize="22sp"
         android:paddingTop="2dp"
         android:layout_marginTop="20dp"/>
+    <EditText
+        android:id="@+id/edtMinute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnType"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/stroke_edit_text"
+        android:hint="Thời gian (phút)"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="20sp" />
     <Button
+        android:id="@+id/btnConfirm"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Xác nhận"
         android:layout_centerHorizontal="true"
         android:textSize="18sp"
-        android:inputType="number"
         android:layout_marginTop="20dp"
         android:background="@color/blue600"
         android:textColor="#ffffff"
-        android:layout_below="@id/spnType"/>
+        android:layout_below="@id/edtMinute"/>
 </RelativeLayout>

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.activity.AddReferee;
 import com.example.qlgiaibongda.model.Referee;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,17 @@ public class ListRefereeManagementAdapter extends RecyclerView.Adapter<ListRefer
     @Override
     public void onBindViewHolder(@NonNull RefereeViewHolder holder, int position) {
         Referee referee = listReferee.get(position);
-        holder.imgRefereeLogo.setImageResource(R.drawable.manutd);
+        if (referee.getAvatar() == null || referee.getAvatar().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_avatar)
+                    .into(holder.imgRefereeLogo);
+        }
+        else {
+            Picasso.get()
+                    .load(referee.getAvatar())
+                    .error(R.drawable.no_avatar)
+                    .into(holder.imgRefereeLogo);
+        }
         holder.tvRefereeName.setText(referee.getName());
 
         holder.setmOnItemClickListener(new onItemClickListener() {
@@ -50,15 +61,6 @@ public class ListRefereeManagementAdapter extends RecyclerView.Adapter<ListRefer
             public void onItemClick(View v, int i) {
                 Toast.makeText(context,referee.getName(),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, AddReferee.class);
-//                intent.putExtra("id",referee.getId());
-//                intent.putExtra("name", referee.getName());
-//                intent.putExtra("shortName",referee.getShortName());
-//                intent.putExtra("stadium",referee.getStadium());
-//                intent.putExtra("sponsor",referee.getSponsor());
-//                intent.putExtra("captainId",referee.getCaptainId());
-//                intent.putExtra("coachId", referee.getCoachId());
-//                intent.putExtra("currentRanking", referee.getCurrentRanking());
-//                intent.putExtra("logo",referee.getLogo());
                 context.startActivity(intent);
             }
         });

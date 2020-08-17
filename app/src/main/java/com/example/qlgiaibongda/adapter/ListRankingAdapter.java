@@ -16,6 +16,7 @@ import com.example.qlgiaibongda.activity.ClubDetail;
 import com.example.qlgiaibongda.activity.MainActivity;
 import com.example.qlgiaibongda.activity.MatchInfo;
 import com.example.qlgiaibongda.model.Team;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,21 @@ import java.util.ArrayList;
         Team team = listTeam.get(position);
         holder.tvRank.setText(String.valueOf(position + 1));
         holder.imvState.setImageResource(R.drawable.ic_arrow_drop_down);
+        if (team.getLogo() == null || team.getLogo().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_image)
+                    .into(holder.imvLogoClub);
+        }
+        else {
+            Picasso.get()
+                    .load(team.getLogo())
+                    .error(R.drawable.no_image)
+                    .into(holder.imvLogoClub);
+        }
+        holder.tvNameClub.setText("Manchester United");
+        holder.tvMatchCount.setText("30");
+        holder.tvCoefficient.setText("50");
+        holder.tvPoint.setText("80");
         holder.imvLogoClub.setImageResource(R.drawable.manutd);
         holder.tvNameClub.setText(team.getName());
         int win = MainActivity.teamNameToRankHashMap.get(team.getName()).getWin();

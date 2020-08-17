@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
-import com.example.qlgiaibongda.activity.AddPlayer;
 import com.example.qlgiaibongda.activity.EditPlayer;
 import com.example.qlgiaibongda.activity.MainActivity;
 import com.example.qlgiaibongda.activity.PlayerDetail;
@@ -50,6 +48,18 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
     public void onBindViewHolder(@NonNull PlayerViewHolder holder, int position) {
         Player player = listPlayer.get(position);
         holder.tvShirtNumber.setText(player.getNumber().toString());
+        if (player.getAvatar() == null || player.getAvatar().equals("")) {
+            Picasso.get()
+                    .load(R.drawable.no_avatar)
+                    .into(holder.imgPlayerPhoto);
+        }
+        else {
+            Picasso.get()
+                    .load(player.getAvatar())
+                    .error(R.drawable.no_avatar)
+                    .into(holder.imgPlayerPhoto);
+        }
+        holder.tvPlayerClub.setText(MainActivity.teamIdToTeamNameHashMap.get(player.getTeamId()));
         holder.imgPlayerPhoto.setImageResource(R.drawable.old_trafford);
         holder.tvPlayerClub.setText(MainActivity.teamIdToTeamNameHashMap.get(player.getTeamId()));
         holder.tvPlayerName.setText(player.getName());

@@ -7,15 +7,13 @@
     <ImageView
         android:layout_marginLeft="10dp"
         android:id="@+id/imgViewMainMenuItem"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_action_search2">
+        android:layout_width="10dp"
+        android:layout_height="40dp">
     </ImageView>
     <TextView
         android:id="@+id/textViewMainMenuItem"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="ss"
+        android:layout_height="wrap_content"
         android:textSize="20dp"
         android:layout_gravity="center_vertical"
         android:textColor="@color/colorPrimaryDark"

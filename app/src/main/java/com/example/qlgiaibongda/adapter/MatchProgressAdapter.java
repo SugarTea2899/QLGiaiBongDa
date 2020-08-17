@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.MatchStatDetails;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -86,30 +88,85 @@ public class MatchProgressAdapter extends RecyclerView.Adapter<RecyclerView.View
                 goalViewHolder.namePlayer.setText(matchStatDetails.getPlayerIn().getName());
                 goalViewHolder.type.setVisibility(View.INVISIBLE);
                 goalViewHolder.nameClub.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
+                if (matchStatDetails.getPlayerIn().getAvatar() == null || matchStatDetails.getPlayerIn().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(goalViewHolder.imagePlayer);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerIn().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(goalViewHolder.imagePlayer);
+                }
                 break;
             case PENALTY:
                 GoalItem penaltyViewHolder = (GoalItem) holder;
                 penaltyViewHolder.minute.setText(matchStatDetails.getMinute().toString() + "'");
                 penaltyViewHolder.namePlayer.setText(matchStatDetails.getPlayerIn().getName());
                 penaltyViewHolder.nameClub.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
+                if (matchStatDetails.getPlayerIn().getAvatar() == null || matchStatDetails.getPlayerIn().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(penaltyViewHolder.imagePlayer);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerIn().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(penaltyViewHolder.imagePlayer);
+                }
                 break;
             case OG:
                 OwnGoal ogViewHolder = (OwnGoal) holder;
                 ogViewHolder.minute.setText(matchStatDetails.getMinute().toString() + "'");
                 ogViewHolder.namePlayer.setText(matchStatDetails.getPlayerIn().getName());
                 ogViewHolder.nameClub.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
+                if (matchStatDetails.getPlayerIn().getAvatar() == null || matchStatDetails.getPlayerIn().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(ogViewHolder.imagePlayer);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerIn().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(ogViewHolder.imagePlayer);
+                }
                 break;
             case YELLOW:
                 YellowItem yellowViewHoler = (YellowItem) holder;
                 yellowViewHoler.minute.setText(matchStatDetails.getMinute().toString() + "'");
                 yellowViewHoler.namePlayer.setText(matchStatDetails.getPlayerIn().getName());
                 yellowViewHoler.nameClub.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
+                if (matchStatDetails.getPlayerIn().getAvatar() == null || matchStatDetails.getPlayerIn().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(yellowViewHoler.imagePlayer);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerIn().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(yellowViewHoler.imagePlayer);
+                }
                 break;
             case RED:
                 RedItem redViewHolder = (RedItem) holder;
                 redViewHolder.minute.setText(matchStatDetails.getMinute().toString() + "'");
                 redViewHolder.namePlayer.setText(matchStatDetails.getPlayerIn().getName());
                 redViewHolder.nameClub.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
+                if (matchStatDetails.getPlayerIn().getAvatar() == null || matchStatDetails.getPlayerIn().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(redViewHolder.imagePlayer);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerIn().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(redViewHolder.imagePlayer);
+                }
                 break;
             case SUBSTITUTE:
                 SubstituteItem substituteViewHolder = (SubstituteItem) holder;
@@ -118,6 +175,28 @@ public class MatchProgressAdapter extends RecyclerView.Adapter<RecyclerView.View
                 substituteViewHolder.nameClubIn.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
                 substituteViewHolder.namePlayerOut.setText(matchStatDetails.getPlayerOut().getName());
                 substituteViewHolder.nameClubOut.setText(matchStatDetails.getHomeTeam() ? matchInfo.getHomeTeam() : matchInfo.getGuestTeam());
+                if (matchStatDetails.getPlayerIn().getAvatar() == null || matchStatDetails.getPlayerIn().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(substituteViewHolder.imagePlayerIn);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerIn().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(substituteViewHolder.imagePlayerIn);
+                }
+                if (matchStatDetails.getPlayerOut().getAvatar() == null || matchStatDetails.getPlayerOut().getAvatar().equals("")) {
+                    Picasso.get()
+                            .load(R.drawable.no_avatar)
+                            .into(substituteViewHolder.imagePlayerOut);
+                }
+                else {
+                    Picasso.get()
+                            .load(matchStatDetails.getPlayerOut().getAvatar())
+                            .error(R.drawable.no_avatar)
+                            .into(substituteViewHolder.imagePlayerOut);
+                }
                 break;
             default:
                 break;
