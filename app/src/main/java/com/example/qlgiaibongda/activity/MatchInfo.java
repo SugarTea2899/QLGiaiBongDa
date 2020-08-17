@@ -87,7 +87,6 @@ public class MatchInfo extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.menuOptions);
         tabLayout.addTab(tabLayout.newTab().setText("DIỄN BIẾN"));
-        tabLayout.addTab(tabLayout.newTab().setText("ĐỘI HÌNH"));
         tabLayout.addTab(tabLayout.newTab().setText("THÔNG SỐ"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -109,9 +108,6 @@ public class MatchInfo extends AppCompatActivity {
         });
 
         tvTitle.setText("Thông tin trận đấu");
-        if (isLogined) {
-            imbMenu.setVisibility(View.VISIBLE);
-        }
 
         loadData();
 
@@ -159,6 +155,9 @@ public class MatchInfo extends AppCompatActivity {
         });
 
         imbMenu = (ImageButton) findViewById(R.id.menuButton);
+        if (isLogined) {
+            imbMenu.setVisibility(View.VISIBLE);
+        }
         imbMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
