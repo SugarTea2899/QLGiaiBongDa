@@ -42,7 +42,7 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
 
     private DataClient dataClient = APIUtils.getData();
     ArrayList<Player> filteredList = new ArrayList<>();
-    public static HashMap<String, String> teamIdToTeamNameHashMap;
+
 
     private ImageButton imgBackButton;
 
@@ -53,7 +53,6 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_player_management);
 
         getWidget();
-        setupTeamHashMap();
         setEvent("");
 
     }
@@ -137,28 +136,6 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
         });
     }
 
-    private void setupTeamHashMap() {
-        teamIdToTeamNameHashMap = new HashMap<String, String>();
-        Call<ArrayList<Team>> getListTeam = dataClient.getListSearchTeam("");
-        Context context = this;
-        getListTeam.enqueue(new Callback<ArrayList<Team>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Team>> call, Response<ArrayList<Team>> response) {
-                if (response.isSuccessful()) {
-                    ArrayList<Team> teams = (ArrayList<Team>) response.body();
-                    for (Team team: teams)
-                    {
-                        teamIdToTeamNameHashMap.put(team.getId(), team.getName());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Team>> call, Throwable t) {
-
-            }
-        });
-    }
 
 
     @Override

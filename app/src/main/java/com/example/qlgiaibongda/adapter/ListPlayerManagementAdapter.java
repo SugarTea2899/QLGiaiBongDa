@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.activity.AddPlayer;
+import com.example.qlgiaibongda.activity.EditPlayer;
+import com.example.qlgiaibongda.activity.MainActivity;
 import com.example.qlgiaibongda.activity.PlayerManagement;
 import com.example.qlgiaibongda.model.Player;
 
@@ -46,7 +48,7 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
         Player player = listPlayer.get(position);
         holder.tvShirtNumber.setText(player.getNumber().toString());
         holder.imgPlayerPhoto.setImageResource(R.drawable.old_trafford);
-        holder.tvPlayerClub.setText(PlayerManagement.teamIdToTeamNameHashMap.get(player.getTeamId()));
+        holder.tvPlayerClub.setText(MainActivity.teamIdToTeamNameHashMap.get(player.getTeamId()));
         holder.tvPlayerName.setText(player.getName());
         holder.tvPlayerFreeAgent.setText("Cầu thủ tự do");
         holder.imgPlayerClub.setImageResource(R.drawable.manutd);
@@ -70,7 +72,8 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
             @Override
             public void onItemClick(View v, int i) {
                 Toast.makeText(context,player.getName(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, AddPlayer.class);
+                Intent intent = new Intent(context, EditPlayer.class);
+                intent.putExtra("playerId", player.getId());
 //               
                 context.startActivity(intent);
             }

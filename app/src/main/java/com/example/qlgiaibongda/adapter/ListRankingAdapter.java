@@ -1,6 +1,7 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.ClubDetail;
+import com.example.qlgiaibongda.activity.MainActivity;
+import com.example.qlgiaibongda.activity.MatchInfo;
 import com.example.qlgiaibongda.model.Team;
 
 import java.util.ArrayList;
@@ -38,10 +42,28 @@ import java.util.ArrayList;
         holder.tvRank.setText(String.valueOf(position + 1));
         holder.imvState.setImageResource(R.drawable.ic_arrow_drop_down);
         holder.imvLogoClub.setImageResource(R.drawable.manutd);
-        holder.tvNameClub.setText("Manchester United");
-        holder.tvMatchCount.setText("30");
-        holder.tvCoefficient.setText("50");
-        holder.tvPoint.setText("80");
+        holder.tvNameClub.setText(team.getName());
+        int win = MainActivity.teamNameToRankHashMap.get(team.getName()).getWin();
+        int draw = MainActivity.teamNameToRankHashMap.get(team.getName()).getDraw();
+        int loss = MainActivity.teamNameToRankHashMap.get(team.getName()).getLoss();
+        int goal = MainActivity.teamNameToRankHashMap.get(team.getName()).getGoal();
+        int conceded = MainActivity.teamNameToRankHashMap.get(team.getName()).getConceded();
+        Integer matchNum = win + draw + loss;
+        Integer coefficient = goal - conceded;
+        Integer point = MainActivity.teamNameToRankHashMap.get(team.getName()).getPoint();
+        holder.tvMatchCount.setText(matchNum.toString());
+        holder.tvCoefficient.setText(coefficient.toString());
+        holder.tvPoint.setText(point.toString());
+
+        holder.setmOnItemClickListener(new onItemClickListener() {
+            @Override
+            public void onItemClick(View v, int i) {
+                Intent intent = new Intent(context, ClubDetail.class);
+                // intent.putExtra("playerId", player.getId());
+//
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -59,6 +81,10 @@ import java.util.ArrayList;
         public TextView tvPoint;
         public onItemClickListener itemClickListener;
 
+        public void setmOnItemClickListener (onItemClickListener _onItemClickListener){
+            this.itemClickListener = _onItemClickListener;
+        }
+
         public TeamViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
             super(itemView);
             tvRank = (TextView) itemView.findViewById(R.id.rank);
@@ -73,11 +99,11 @@ import java.util.ArrayList;
 
         @Override
         public void onClick(View v) {
-            itemClickListener.onItemClick(getAdapterPosition());
+            itemClickListener.onItemClick(v, getAdapterPosition());
         }
     }
 
     public interface onItemClickListener {
-        void onItemClick(int i);
+        void onItemClick(View v, int i);
     }
 }
