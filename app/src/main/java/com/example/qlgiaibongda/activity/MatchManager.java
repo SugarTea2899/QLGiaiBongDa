@@ -39,6 +39,7 @@ public class MatchManager extends AppCompatActivity implements ListMatchAdapter.
     private EditText edtFilter;
     private ImageButton imbAddMatch;
     private TextView tvTitle;
+    private ImageButton imbBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,13 @@ public class MatchManager extends AppCompatActivity implements ListMatchAdapter.
         if (isLogined) {
             imbAddMatch.setVisibility(View.VISIBLE);
         }
+        imbBack = (ImageButton) findViewById(R.id.backBtn);
+        imbBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         edtFilter = (EditText) findViewById(R.id.searchText);
         edtFilter.addTextChangedListener(new TextWatcher() {

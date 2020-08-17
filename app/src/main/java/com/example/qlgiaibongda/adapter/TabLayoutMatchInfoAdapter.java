@@ -30,9 +30,6 @@ public class TabLayoutMatchInfoAdapter extends FragmentPagerAdapter {
                 MatchProgressFragment matchProgressFragment = new MatchProgressFragment(matchInfo);
                 return matchProgressFragment;
             case 1:
-                SelectedListFragment selectedListFragment = new SelectedListFragment(matchInfo);
-                return selectedListFragment;
-            case 2:
                 StatisticMatchFragment statisticMatchFragment = new StatisticMatchFragment(matchInfo);
                 return statisticMatchFragment;
             default:
