@@ -2,7 +2,9 @@ package com.example.qlgiaibongda.activity;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,7 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,7 +64,7 @@ public class PlayerDetail extends AppCompatActivity {
     private Player player;
 
     private final int REQUEST_EDIT_CODE = 1;
-    private String playerId = "5f38d13cf79803402ca4d281";
+    private String playerId = "5f38e03ad73e680d90799b93";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,8 +217,75 @@ public class PlayerDetail extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_EDIT_CODE);
             }
         });
+
+        btnRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removePlayer();
+            }
+        });
     }
 
+
+
+    private void removePlayer(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Xoá cầu thủ");
+        builder.setMessage("Bạn có muốn xoá cầu thủ này không");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                "Không",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }
+        );
+
+        builder.setNegativeButton(
+                "Có",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog1, int which) {
+                        dialog1.cancel();
+                        final ProgressDialog dialog = new ProgressDialog(PlayerDetail.this);
+                        dialog.setTitle("Xoá cầu thủ");
+                        dialog.setMessage("Xin chờ...");
+                        dialog.show();
+
+                        DataClient dataClient = APIUtils.getData();
+                        Call<ResponseBody> callback = dataClient.removePlayer(playerId);
+                        callback.enqueue(new Callback<ResponseBody>() {
+                            @Override
+                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                if (response.isSuccessful()){
+                                    Toast.makeText(getApplicationContext(), "Xoá cầu thủ thành công", Toast.LENGTH_SHORT).show();
+                                    setResult(Activity.RESULT_OK);
+                                    finish();
+                                    dialog.dismiss();
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "Xoá cầu thủ thất bại", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Xoá cầu thủ thất bại", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                }
+        );
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+
+    }
     private void checkState(){
         if (State.isLogined){
             btnMenu.setVisibility(View.VISIBLE);
