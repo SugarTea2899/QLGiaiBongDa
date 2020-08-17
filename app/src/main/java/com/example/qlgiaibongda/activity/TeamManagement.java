@@ -24,6 +24,7 @@ import com.example.qlgiaibongda.adapter.ListTeamManagementAdapter;
 import com.example.qlgiaibongda.model.Team;
 import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.example.qlgiaibongda.retrofit.DataClient;
+import com.example.qlgiaibongda.state.State;
 import com.google.android.material.appbar.AppBarLayout;
 
 import org.w3c.dom.Text;
@@ -57,6 +58,10 @@ public class TeamManagement extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_team_management);
 
         getWidget();
+        if (!State.isLogined)
+        {
+            imgButtonAddTeam.setVisibility(View.INVISIBLE);
+        }
         setEvent("");
     }
 

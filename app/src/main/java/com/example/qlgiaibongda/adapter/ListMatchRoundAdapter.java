@@ -1,6 +1,8 @@
 package com.example.qlgiaibongda.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +10,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.ClubDetail;
 import com.example.qlgiaibongda.activity.MainActivity;
+import com.example.qlgiaibongda.activity.MatchInfo;
 import com.example.qlgiaibongda.model.Match;
+import com.example.qlgiaibongda.model.MatchStatDetails;
+import com.example.qlgiaibongda.retrofit.APIUtils;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -48,29 +56,57 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
     @Override
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
         Match match = listMatch.get(position);
-        holder.textViewHomeName.setText("MU");
-        holder.textViewAwayName.setText("BIR");
+        holder.textViewHomeName.setText(MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getShortName());
+        holder.textViewAwayName.setText(MainActivity.teamNameToTeamHashMap.get(match.getGuestTeam()).getShortName());
 
-        Timestamp matchDayTimeStamp = new Timestamp(System.currentTimeMillis());
-        Date matchDate = new Date(matchDayTimeStamp.getTime());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM hh:mm");
-        holder.textViewTimeInfo.setText(simpleDateFormat.format(matchDate));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM HH:mm");
 
-        holder.imgHome.setImageResource(R.drawable.manutd);
-        holder.imgAway.setImageResource(R.drawable.manutd);
+        Date currentTimeStamp = new Date();
+        Date matchDayTimeStamp = match.getDateStart();
+        if (matchDayTimeStamp.after(currentTimeStamp))
+        {
+            holder.textViewTimeInfo.setText(simpleDateFormat.format(matchDayTimeStamp));
+        }
+        else
+        {
+            holder.textViewTimeInfo.setTextColor(Color.parseColor("#FF0000"));
+            holder.textViewTimeInfo.setText(String.format("%d : %d", match.getHomeGoal(), match.getGuestGoal()));
+        }
+
         holder.imgMoreInfo.setImageResource(R.drawable.ic_more_info);
+
+
+        String homeLogo = MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getLogo();
+        String guestLogo = MainActivity.teamNameToTeamHashMap.get(match.getGuestTeam()).getLogo();
+        if (homeLogo == null || homeLogo.length() == 0){
+            Picasso.get().load(R.drawable.no_avatar).into(holder.imgHome);
+        }else{
+            Picasso.get().load(APIUtils.BASE_URL + homeLogo).error(R.drawable.no_avatar).into(holder.imgHome);
+        }
+
+        if (guestLogo == null || guestLogo.length() == 0){
+            Picasso.get().load(R.drawable.no_avatar).into(holder.imgAway);
+        }else{
+            Picasso.get().load(APIUtils.BASE_URL + guestLogo).error(R.drawable.no_avatar).into(holder.imgAway);
+        }
+
 
         holder.imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, ClubDetail.class);
+                intent.putExtra("teamId", MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getId());
+                context.startActivity(intent);
             }
         });
 
         holder.imgAway.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, ClubDetail.class);
+                //intent.putExtra("teamName", match.getGuestTeam());
+                intent.putExtra("teamId", MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getId());
+                context.startActivity(intent);
             }
         });
 
@@ -78,6 +114,16 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        holder.setmOnItemClickListener(new onItemClickListener() {
+            @Override
+            public void onItemClick(View v, int i) {
+                Intent intent = new Intent(context, MatchInfo.class);
+                intent.putExtra("matchId", match.getId());
+//
+                context.startActivity(intent);
             }
         });
 
@@ -99,6 +145,10 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
         public ImageButton imgMoreInfo;
         public onItemClickListener itemClickListener;
 
+        public void setmOnItemClickListener (onItemClickListener _onItemClickListener){
+            this.itemClickListener = _onItemClickListener;
+        }
+
         public MatchViewHolder(@NonNull View itemView, onItemClickListener itemClickListener) {
             super(itemView);
             textViewHomeName = (TextView) itemView.findViewById(R.id.homeTeamNameText);
@@ -112,11 +162,11 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
 
         @Override
         public void onClick(View view) {
-          //  itemClickListener.onItemClick(getAdapterPosition());
+            itemClickListener.onItemClick(view, getAdapterPosition());
         }
     }
     public interface onItemClickListener {
-        void onItemClick(int i);
+        void onItemClick(View v, int i);
     }
 //    private Context context;
 //    private int layout;
