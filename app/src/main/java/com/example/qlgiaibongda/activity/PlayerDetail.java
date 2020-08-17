@@ -64,7 +64,7 @@ public class PlayerDetail extends AppCompatActivity {
     private Player player;
 
     private final int REQUEST_EDIT_CODE = 1;
-    private String playerId = "5f38e03ad73e680d90799b93";
+    private String playerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +102,8 @@ public class PlayerDetail extends AppCompatActivity {
     }
 
     private void fillInfo(){
+        playerId = getIntent().getStringExtra("playerId");
+
         final ProgressDialog dialog = new ProgressDialog(PlayerDetail.this);
         dialog.setTitle("Load dữ liệu");
         dialog.setMessage("Xin chờ...");

@@ -18,6 +18,7 @@ import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.activity.AddPlayer;
 import com.example.qlgiaibongda.activity.EditPlayer;
 import com.example.qlgiaibongda.activity.MainActivity;
+import com.example.qlgiaibongda.activity.PlayerDetail;
 import com.example.qlgiaibongda.activity.PlayerManagement;
 import com.example.qlgiaibongda.model.Player;
 import com.example.qlgiaibongda.retrofit.APIUtils;
@@ -73,8 +74,7 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
         holder.setmOnItemClickListener(new onItemClickListener() {
             @Override
             public void onItemClick(View v, int i) {
-                Toast.makeText(context,player.getName(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, EditPlayer.class);
+                Intent intent = new Intent(context, PlayerDetail.class);
                 intent.putExtra("playerId", player.getId());
 //               
                 context.startActivity(intent);
