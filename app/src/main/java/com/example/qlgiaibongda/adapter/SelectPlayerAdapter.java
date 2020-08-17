@@ -5,13 +5,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.SelectedList;
 import com.example.qlgiaibongda.constant.Constant;
 import com.example.qlgiaibongda.model.Player;
 import com.squareup.picasso.Picasso;
@@ -57,12 +61,14 @@ public class SelectPlayerAdapter extends RecyclerView.Adapter<SelectPlayerAdapte
                 default:
                     holder.tvPlayerType.setText("Không tìm thấy");
         }
-
-        Picasso.get()
-                .load(player.getAvatar())
-                .error(R.drawable.no_logo)
-                .resize(30, 45)
-                .into(holder.imvPlayerAvatar);
+        if (SelectedList.homeSelectedPlayers.containsKey(player.getId()) || SelectedList.guestSelectedPlayers.containsKey(player.getId())){
+            holder.cb.setChecked(true);
+        }
+        if (player.getAvatar() == null || player.getAvatar().length() == 0){
+            Picasso.get().load(R.drawable.no_image).into(holder.imvPlayerAvatar);
+        }else{
+            Picasso.get().load(player.getAvatar()).error(R.drawable.no_image).into(holder.imvPlayerAvatar);
+        }
     }
 
     @Override
@@ -76,12 +82,34 @@ public class SelectPlayerAdapter extends RecyclerView.Adapter<SelectPlayerAdapte
         TextView tvPlayerName;
         TextView tvPlayerType;
         ImageView imvPlayerAvatar;
+        CheckBox cb;
         public SelectPlayer(@NonNull View itemView) {
             super(itemView);
             tvPlayerName = (TextView)itemView.findViewById(R.id.tvPlayerName);
             tvPlayerNumber = (TextView) itemView.findViewById(R.id.tvPlayerNumber);
             tvPlayerType = (TextView) itemView.findViewById(R.id.tvPlayerType);
             imvPlayerAvatar = (ImageView) itemView.findViewById(R.id.imvPlayerAvatar);
+            cb = (CheckBox) itemView.findViewById(R.id.cbSelectPlayer);
+
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Player player = listPlayer.get(getAdapterPosition());
+                    if (isChecked){
+                        if (SelectedList.isHomeScreen){
+                            SelectedList.homeSelectedPlayers.put(player.getId(), player);
+                        }else{
+                            SelectedList.guestSelectedPlayers.put(player.getId(), player);
+                        }
+                    }else{
+                        if (SelectedList.isHomeScreen){
+                            SelectedList.homeSelectedPlayers.remove(player.getId());
+                        }else{
+                            SelectedList.guestSelectedPlayers.remove(player.getId());
+                        }
+                    }
+                }
+            });
         }
     }
 

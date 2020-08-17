@@ -103,7 +103,20 @@ public interface DataClient {
     @GET("referee/search?")
     Call<ArrayList<Referee>> getListSearchReferee(@Query("name") String name);
 
+    @GET("referee/list")
+    Call<List<Referee>> getRefereeList();
+
     @GET("match/get-match-info")
     Call<Match> getMatchInfo(@Query("matchId") String matchId);
+
+    @FormUrlEncoded
+    @POST("match/add")
+    Call<ResponseBody> addMatch(@Field("homeTeam") String homeTeam, @Field("guestTeam") String guestTeam, @Field("dateStart") long dateStart,
+                                @Field("stadium") String stadium, @Field("refereeId") String refereeId, @Field("round") int round);
+
+    @FormUrlEncoded
+    @POST("match/update")
+    Call<ResponseBody> updateMatch(@Field("matchId") String matchId, @Field("homeTeam") String homeTeam, @Field("guestTeam") String guestTeam, @Field("dateStart") long dateStart,
+                                   @Field("stadium") String stadium, @Field("refereeId") String refereeId, @Field("round") int round);
 
 }

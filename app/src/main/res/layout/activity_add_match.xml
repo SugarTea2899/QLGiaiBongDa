@@ -27,7 +27,7 @@
         android:paddingBottom="2dp"
         android:textSize="22sp"
         android:paddingTop="2dp"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="40dp"/>
 
     <Spinner
         android:id="@+id/spnGuestTeam"
@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spnReferee"
         android:layout_marginLeft="15dp"
+        android:inputType="number"
         android:layout_marginTop="25dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/stroke_edit_text"
@@ -124,6 +125,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnAdd"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Xác nhận"

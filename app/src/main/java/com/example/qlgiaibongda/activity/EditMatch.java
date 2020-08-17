@@ -3,7 +3,6 @@ package com.example.qlgiaibongda.activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -26,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.qlgiaibongda.R;
-import com.example.qlgiaibongda.model.Coach;
+import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.Referee;
 import com.example.qlgiaibongda.model.Team;
 import com.example.qlgiaibongda.retrofit.APIUtils;
@@ -34,7 +33,6 @@ import com.example.qlgiaibongda.retrofit.DataClient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -44,7 +42,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddMatch extends AppCompatActivity {
+public class EditMatch extends AppCompatActivity {
+
     private Toolbar toolbar;
     private TextView tvTitle;
     private ImageButton btnDatePicker;
@@ -66,12 +65,15 @@ public class AddMatch extends AppCompatActivity {
     private int selectedGuestTeam = -1;
     private int selectedReferee = -1;
 
+    private String matchId = "5f39fa8c76d906313c682003";
+    private Match match;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_match);
         getWidget();
-        tvTitle.setText("Thêm trận đấu");
+        tvTitle.setText("Chỉnh sửa trận đấu");
         setSupportActionBar(toolbar);
         setTitle(null);
         fillInfo();
@@ -91,6 +93,35 @@ public class AddMatch extends AppCompatActivity {
         btnAdd = (Button) findViewById(R.id.btnAdd);
         edtStadium = (EditText) findViewById(R.id.edtStadium);
         edtRound = (EditText) findViewById(R.id.edtRound);
+    }
+
+    private void pickDateTime(){
+        final Calendar calendar = Calendar.getInstance();
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(year, month, dayOfMonth);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(EditMatch.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minute);
+                        tvDateStart.setText(simpleDateFormat.format(calendar.getTime()));
+                    }
+                },0, 0, true);
+
+                timePickerDialog.show();
+            }
+        }, year,month,date);
+
+        datePickerDialog.show();
+
     }
 
     private void setEvent(){
@@ -144,7 +175,7 @@ public class AddMatch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    addMatch();
+                    editMatch();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -153,42 +184,37 @@ public class AddMatch extends AppCompatActivity {
 
     }
 
-    private void pickDateTime(){
-        final Calendar calendar = Calendar.getInstance();
-        int date = calendar.get(Calendar.DATE);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(year, month, dayOfMonth);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(AddMatch.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        calendar.set(Calendar.MINUTE, minute);
-                        tvDateStart.setText(simpleDateFormat.format(calendar.getTime()));
-                    }
-                },0, 0, true);
-
-                timePickerDialog.show();
-            }
-        }, year,month,date);
-
-        datePickerDialog.show();
-
-    }
-
     private void fillInfo(){
-        final ProgressDialog dialog = new ProgressDialog(AddMatch.this);
+        final ProgressDialog dialog = new ProgressDialog(EditMatch.this);
         dialog.setTitle("Load dữ liệu");
         dialog.setMessage("Xin chờ...");
         dialog.show();
         DataClient dataClient = APIUtils.getData();
-        initSpnTeam(dataClient, dialog);
+        Call<Match> callback = dataClient.getMatchInfo(matchId);
+        callback.enqueue(new Callback<Match>() {
+            @Override
+            public void onResponse(Call<Match> call, Response<Match> response) {
+                if (response.isSuccessful()){
+                    match = (Match) response.body();
+                    edtRound.setText(String.valueOf(match.getRound()));
+                    edtStadium.setText(match.getStadium());
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                    tvDateStart.setText(simpleDateFormat.format(match.getDateStart()));
+
+                    initSpnTeam(dataClient, dialog);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Load dữ liệu thất bại", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Match> call, Throwable t) {
+
+            }
+        });
+
     }
 
     private void initSpnTeam(DataClient dataClient, ProgressDialog dialog){
@@ -285,6 +311,19 @@ public class AddMatch extends AppCompatActivity {
                     spnGuestTeam.setAdapter(adapterGuest);
                     spnHomeTeam.setAdapter(adapterHome);
 
+
+                    for (int j = 0; j < teamList.size(); j++){
+                        if (match.getHomeTeam().equals(teamList.get(j).getName())){
+                            selectedHomeTeam = j;
+                            spnHomeTeam.setSelection(j + 1);
+                        }
+
+                        if (match.getGuestTeam().equals(teamList.get(j).getName())){
+                            selectedGuestTeam = j;
+                            spnGuestTeam.setSelection(j + 1);
+                        }
+                    }
+
                     initSpnReferee(dataClient, dialog);
 
                 }else{
@@ -353,6 +392,15 @@ public class AddMatch extends AppCompatActivity {
                     };
 
                     spnReferee.setAdapter(adapter);
+
+                    for (int j = 0; j < refereeList.size(); j++){
+                        if (match.getRefereeId().equals(refereeList.get(j).getId())){
+                            selectedReferee = j;
+                            spnReferee.setSelection(j + 1);
+                            break;
+                        }
+                    }
+
                     dialog.dismiss();
                 }else{
                     Toast.makeText(getApplicationContext(), "Load dữ liệu thất bại", Toast.LENGTH_SHORT).show();
@@ -368,13 +416,13 @@ public class AddMatch extends AppCompatActivity {
         });
     }
 
-    private void addMatch() throws ParseException {
+    private void editMatch() throws ParseException {
         String stadium = edtStadium.getText().toString();
         String roundStr = edtRound.getText().toString();
         String dateStart = tvDateStart.getText().toString();
 
         if (roundStr.length() == 0 || stadium.length() == 0 || dateStart.length() == 0 || selectedGuestTeam == -1
-            || selectedHomeTeam == -1 || selectedReferee == -1){
+                || selectedHomeTeam == -1 || selectedReferee == -1){
             Toast.makeText(getApplicationContext(), "Thông tin rỗng", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -384,13 +432,13 @@ public class AddMatch extends AppCompatActivity {
             return;
         }
 
-        final ProgressDialog dialog = new ProgressDialog(AddMatch.this);
+        final ProgressDialog dialog = new ProgressDialog(EditMatch.this);
         dialog.setTitle("Thêm trận đấu");
         dialog.setMessage("Xin chờ...");
         dialog.show();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         DataClient dataClient = APIUtils.getData();
-        Call<ResponseBody> callback = dataClient.addMatch(teamList.get(selectedHomeTeam).getName(),
+        Call<ResponseBody> callback = dataClient.updateMatch(matchId ,teamList.get(selectedHomeTeam).getName(),
                 teamList.get(selectedGuestTeam).getName(),simpleDateFormat.parse(dateStart).getTime(), stadium,
                 refereeList.get(selectedReferee).getId(), Integer.parseInt(roundStr));
 
@@ -398,21 +446,19 @@ public class AddMatch extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Thêm trận đấu thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chỉnh sửa trận đấu thành công", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Thêm trận đấu thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chỉnh sửa trận đấu thất bại", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Thêm trận đấu thất bại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Chỉnh sửa trận đấu thất bại", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
     }
-
-
 }
