@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
               @Override
               public void onClick(View v) {
                   Intent intent = new Intent(MainActivity.this, PlayerDetail.class);
+
                   startActivity(intent);
               }
           });

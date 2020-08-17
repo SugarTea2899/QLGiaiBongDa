@@ -28,13 +28,11 @@ import java.util.List;
 
 public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamManagementAdapter.TeamViewHolder>  {
     public ArrayList<Team> listTeam;
-
     private Context context;
     private onItemClickListener mOnItemClickListener;
 
     public ListTeamManagementAdapter(ArrayList<Team> listTeam, Context context, onItemClickListener mOnItemClickListener) {
         this.listTeam = listTeam;
-
         this.context = context;
         this.mOnItemClickListener = mOnItemClickListener;
     }
