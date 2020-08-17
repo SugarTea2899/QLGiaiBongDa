@@ -70,7 +70,7 @@ public class EditTeam extends AppCompatActivity {
 
     private Button btnEdit;
 
-    private String teamId = "5ee6f673b5d03d3950095f6e";
+    private String teamId;
     private Team team;
     private ArrayList<Player> playerList;
     private ArrayList<Coach> coachList;
@@ -345,6 +345,7 @@ public class EditTeam extends AppCompatActivity {
     }
 
     private void setInfo(){
+        teamId = getIntent().getStringExtra("teamId");
         final ProgressDialog dialog = new ProgressDialog(EditTeam.this);
         dialog.setTitle("Load dữ liệu");
         dialog.setMessage("Xin chờ...");
@@ -427,8 +428,10 @@ public class EditTeam extends AppCompatActivity {
                                     if (response.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Chỉnh sửa đội thành công", Toast.LENGTH_SHORT).show();
                                         dialog.dismiss();
+                                        setResult(Activity.RESULT_OK);
+                                        finish();
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "Chỉnh sửa đội thành công.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Chỉnh sửa đội thất bại.", Toast.LENGTH_SHORT).show();
                                         dialog.dismiss();
                                     }
                                 }
@@ -443,6 +446,8 @@ public class EditTeam extends AppCompatActivity {
                         }else{
                             Toast.makeText(getApplicationContext(), "Chỉnh sửa đội thành công.", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
+                            setResult(Activity.RESULT_OK);
+                            finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

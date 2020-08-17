@@ -1,5 +1,6 @@
 package com.example.qlgiaibongda.activity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -66,7 +67,7 @@ public class EditMatch extends AppCompatActivity {
     private int selectedGuestTeam = -1;
     private int selectedReferee = -1;
 
-    private String matchId = "5f39fa8c76d906313c682003";
+    private String matchId;
     private Match match;
 
     @Override
@@ -194,6 +195,7 @@ public class EditMatch extends AppCompatActivity {
     }
 
     private void fillInfo(){
+        matchId = getIntent().getStringExtra("matchId");
         final ProgressDialog dialog = new ProgressDialog(EditMatch.this);
         dialog.setTitle("Load dữ liệu");
         dialog.setMessage("Xin chờ...");
@@ -457,9 +459,12 @@ public class EditMatch extends AppCompatActivity {
                 if (response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Chỉnh sửa trận đấu thành công", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+                    setResult(Activity.RESULT_OK);
+                    finish();
                 }else{
                     Toast.makeText(getApplicationContext(), "Chỉnh sửa trận đấu thất bại", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+                    finish();
                 }
             }
 
@@ -467,6 +472,7 @@ public class EditMatch extends AppCompatActivity {
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Chỉnh sửa trận đấu thất bại", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+                finish();
             }
         });
     }

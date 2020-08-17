@@ -168,4 +168,11 @@ public class TeamManagement extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setEvent("");
+    }
 }

@@ -152,6 +152,9 @@ public class ListMemberClubFragment extends Fragment {
     }
 
     private void getCoachInfo() {
+        if (teamInfo.getCoachId() == null)
+            return;
+
         DataClient dataClient = APIUtils.getData();
         Call<Coach> callBackCoachInfo = dataClient.getInfoCoach(teamInfo.getCoachId());
         callBackCoachInfo.enqueue(new Callback<Coach>() {

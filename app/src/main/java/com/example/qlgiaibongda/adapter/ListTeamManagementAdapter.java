@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
+import com.example.qlgiaibongda.activity.ClubDetail;
 import com.example.qlgiaibongda.activity.EditTeam;
 import com.example.qlgiaibongda.activity.TeamManagement;
 import com.example.qlgiaibongda.model.Team;
@@ -66,17 +67,9 @@ public class ListTeamManagementAdapter extends RecyclerView.Adapter<ListTeamMana
         holder.setmOnItemClickListener(new onItemClickListener() {
             @Override
             public void onItemClick(View v, int i) {
-                Toast.makeText(context,team.getName(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, EditTeam.class);
-//                intent.putExtra("id",team.getId());
-//                intent.putExtra("name", team.getName());
-//                intent.putExtra("shortName",team.getShortName());
-//                intent.putExtra("stadium",team.getStadium());
-//                intent.putExtra("sponsor",team.getSponsor());
-//                intent.putExtra("captainId",team.getCaptainId());
-//                intent.putExtra("coachId", team.getCoachId());
-//                intent.putExtra("currentRanking", team.getCurrentRanking());
-//                intent.putExtra("logo",team.getLogo());
+
+                Intent intent = new Intent(context, ClubDetail.class);
+                intent.putExtra("teamId", listTeam.get(i).getId());
                 context.startActivity(intent);
             }
         });

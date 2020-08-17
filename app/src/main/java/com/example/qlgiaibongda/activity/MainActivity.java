@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private RecyclerView topRankedRecyclerView;
     private ImageButton imgButtonListFullMatch;
     private ImageButton imgButtonListFullRanked;
+    private TextView tvRankDetail;
     ArrayList<ItemDrawer> itemDrawerArrayList;
     ArrayList<Match> itemMatchRoundArrayList = new ArrayList<Match>();
     ArrayList<Team> itemRankTeamArrayList = new ArrayList<Team>();
@@ -74,6 +75,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         actionToolbar();
         actionMainMenu();
 
+
+        tvRankDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RankingActivity.class);
+                startActivity(intent);
+            }
+        });
         imgButtonListFullMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,14 +108,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                   startActivity(intent);
               }
           });
-        justTest = (TextView) findViewById(R.id.roundNumberTextView);
-        justTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PlayerManagement.class);
-                startActivity(intent);
-            }
-        });
 
         //-------------------
 
@@ -250,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         topRankedRecyclerView = (RecyclerView) findViewById(R.id.topRankedRecyclerView);
         imgButtonListFullMatch = (ImageButton) findViewById(R.id.listMatchHistoryImageButton);
         imgButtonListFullRanked = (ImageButton) findViewById(R.id.listFullRankedImageButton);
+        tvRankDetail = (TextView) findViewById(R.id.tvRankDetail);
     }
 
     @Override

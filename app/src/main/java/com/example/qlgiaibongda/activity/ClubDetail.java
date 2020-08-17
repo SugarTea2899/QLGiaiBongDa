@@ -51,6 +51,8 @@ public class ClubDetail extends AppCompatActivity {
         clubId = getIntent().getStringExtra("teamId");
 
         toolbar = (Toolbar) findViewById(R.id.toolBar2);
+        TextView tvTitle = (TextView) findViewById(R.id.title);
+        tvTitle.setText("Chi tiết đội bóng");
         tabLayout = (TabLayout) findViewById(R.id.menuOptions);
         tabLayout.addTab(tabLayout.newTab().setText("TRẬN ĐẤU"));
         tabLayout.addTab(tabLayout.newTab().setText("THÀNH VIÊN"));
@@ -149,5 +151,11 @@ public class ClubDetail extends AppCompatActivity {
         if (requestCode == REQUEST_CLUB_DETAIL_CODE && resultCode == Activity.RESULT_OK) {
             loadData();
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        loadData();
     }
 }

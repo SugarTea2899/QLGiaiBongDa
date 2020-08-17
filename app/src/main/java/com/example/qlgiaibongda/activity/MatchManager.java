@@ -131,4 +131,10 @@ public class MatchManager extends AppCompatActivity implements ListMatchAdapter.
     public void onItemClick(View v, int i) {
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setEvent("");
+    }
 }

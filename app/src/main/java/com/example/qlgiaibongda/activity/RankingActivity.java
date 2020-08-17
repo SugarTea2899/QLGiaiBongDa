@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.qlgiaibongda.R;
 import com.example.qlgiaibongda.adapter.ListRankingAdapter;
@@ -66,6 +67,9 @@ public class RankingActivity extends AppCompatActivity implements ListRankingAda
         rcvListTeam = (RecyclerView) findViewById(R.id.rcvRanking);
         rcvListTeam.setLayoutManager(new LinearLayoutManager(RankingActivity.this));
         rcvListTeam.setAdapter(listRankingAdapter);
+
+        TextView tvTitle = (TextView) findViewById(R.id.title);
+        tvTitle.setText("Bảng xếp hạng");
     }
 
     private void setEvent() {
