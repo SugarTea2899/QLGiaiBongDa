@@ -21,6 +21,8 @@ import com.example.qlgiaibongda.activity.MainActivity;
 import com.example.qlgiaibongda.activity.MatchInfo;
 import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.MatchStatDetails;
+import com.example.qlgiaibongda.retrofit.APIUtils;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -71,17 +73,29 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
             holder.textViewTimeInfo.setText(String.format("%d : %d", match.getHomeGoal(), match.getGuestGoal()));
         }
 
-
-
-        holder.imgHome.setImageResource(R.drawable.manutd);
-        holder.imgAway.setImageResource(R.drawable.manutd);
         holder.imgMoreInfo.setImageResource(R.drawable.ic_more_info);
+
+
+        String homeLogo = MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getLogo();
+        String guestLogo = MainActivity.teamNameToTeamHashMap.get(match.getGuestTeam()).getLogo();
+        if (homeLogo == null || homeLogo.length() == 0){
+            Picasso.get().load(R.drawable.no_avatar).into(holder.imgHome);
+        }else{
+            Picasso.get().load(APIUtils.BASE_URL + homeLogo).error(R.drawable.no_avatar).into(holder.imgHome);
+        }
+
+        if (guestLogo == null || guestLogo.length() == 0){
+            Picasso.get().load(R.drawable.no_avatar).into(holder.imgAway);
+        }else{
+            Picasso.get().load(APIUtils.BASE_URL + guestLogo).error(R.drawable.no_avatar).into(holder.imgAway);
+        }
+
 
         holder.imgHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ClubDetail.class);
-                //intent.putExtra("teamName", match.getHomeTeam());
+                intent.putExtra("teamId", MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getId());
                 context.startActivity(intent);
             }
         });
@@ -91,6 +105,7 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
             public void onClick(View view) {
                 Intent intent = new Intent(context, ClubDetail.class);
                 //intent.putExtra("teamName", match.getGuestTeam());
+                intent.putExtra("teamId", MainActivity.teamNameToTeamHashMap.get(match.getHomeTeam()).getId());
                 context.startActivity(intent);
             }
         });
@@ -106,7 +121,7 @@ public class ListMatchRoundAdapter extends RecyclerView.Adapter<ListMatchRoundAd
             @Override
             public void onItemClick(View v, int i) {
                 Intent intent = new Intent(context, MatchInfo.class);
-               // intent.putExtra("playerId", player.getId());
+                intent.putExtra("matchId", match.getId());
 //
                 context.startActivity(intent);
             }

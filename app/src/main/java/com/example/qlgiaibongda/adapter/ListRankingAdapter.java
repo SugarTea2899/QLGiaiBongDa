@@ -59,7 +59,7 @@ import java.util.ArrayList;
             @Override
             public void onItemClick(View v, int i) {
                 Intent intent = new Intent(context, ClubDetail.class);
-                // intent.putExtra("playerId", player.getId());
+                intent.putExtra("teamId", team.getId());
 //
                 context.startActivity(intent);
             }

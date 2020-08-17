@@ -20,6 +20,8 @@ import com.example.qlgiaibongda.activity.EditPlayer;
 import com.example.qlgiaibongda.activity.MainActivity;
 import com.example.qlgiaibongda.activity.PlayerManagement;
 import com.example.qlgiaibongda.model.Player;
+import com.example.qlgiaibongda.retrofit.APIUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -78,6 +80,14 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
                 context.startActivity(intent);
             }
         });
+
+        if (player.getAvatar() == null || player.getAvatar().length() == 0){
+            Picasso.get().load(R.drawable.no_avatar).into(holder.imgPlayerPhoto);
+        }else{
+            Picasso.get().load(APIUtils.BASE_URL + player.getAvatar()).error(R.drawable.no_avatar).into(holder.imgPlayerPhoto);
+        }
+
+
     }
 
     @Override
