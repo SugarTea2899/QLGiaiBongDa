@@ -60,6 +60,7 @@ public class EditMatch extends AppCompatActivity {
     private ArrayList<Referee> refereeList;
 
     private Button btnAdd;
+    private ImageButton btnBack;
 
     private int selectedHomeTeam = -1;
     private int selectedGuestTeam = -1;
@@ -93,6 +94,7 @@ public class EditMatch extends AppCompatActivity {
         btnAdd = (Button) findViewById(R.id.btnAdd);
         edtStadium = (EditText) findViewById(R.id.edtStadium);
         edtRound = (EditText) findViewById(R.id.edtRound);
+        btnBack = (ImageButton) findViewById(R.id.backBtn);
     }
 
     private void pickDateTime(){
@@ -125,6 +127,13 @@ public class EditMatch extends AppCompatActivity {
     }
 
     private void setEvent(){
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -68,6 +68,7 @@ public class EditPlayer extends AppCompatActivity {
     private Spinner spnTeam;
     private ImageButton btnDatePicker;
     private ImageButton btnFolder;
+    private ImageButton btnBack;
     private Button btnAdd;
     private TextView tvPlayerDOB;
     private de.hdodenhof.circleimageview.CircleImageView circleImageView;
@@ -111,9 +112,17 @@ public class EditPlayer extends AppCompatActivity {
         edtPlayerName = (EditText) findViewById(R.id.edtPlayerName);
         edtPlayerNationality = (EditText) findViewById(R.id.edtPlayerNationality);
         edtPlayerNumber = (EditText) findViewById(R.id.edtPlayerNumber);
+        btnBack = (ImageButton) findViewById(R.id.backBtn);
     }
 
     private void setEvent(){
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         btnDatePicker.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -56,7 +56,6 @@ public class PlayerDetail extends AppCompatActivity {
     private ImageButton btnMenu;
     private ImageButton btnRemove;
     private ImageButton btnEdit;
-    private ImageButton btnSetCaptain;
     private ImageButton btnBack;
 
 
@@ -96,7 +95,6 @@ public class PlayerDetail extends AppCompatActivity {
         btnMenu = (ImageButton) findViewById(R.id.btnMenu);
         btnRemove = (ImageButton) findViewById(R.id.btnRemovePlayer);
         btnEdit = (ImageButton) findViewById(R.id.btnEditPlayer);
-        btnSetCaptain = (ImageButton) findViewById(R.id.btnSetCaptain);
         circleImageView = (CircleImageView) findViewById(R.id.cvPlayer);
         btnBack = (ImageButton) findViewById(R.id.backBtn);
     }
@@ -186,11 +184,9 @@ public class PlayerDetail extends AppCompatActivity {
         if (menuOn){
             btnEdit.setVisibility(View.GONE);
             btnRemove.setVisibility(View.GONE);
-            btnSetCaptain.setVisibility(View.GONE);
         }else{
             btnEdit.setVisibility(View.VISIBLE);
             btnRemove.setVisibility(View.VISIBLE);
-            btnSetCaptain.setVisibility(View.VISIBLE);
         }
 
         menuOn = !menuOn;

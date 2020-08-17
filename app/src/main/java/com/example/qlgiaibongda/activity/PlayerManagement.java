@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,6 +65,12 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
     }
 
     private void setEvent(String searchText) {
+
+        final ProgressDialog dialog = new ProgressDialog(PlayerManagement.this);
+        dialog.setTitle("Tìm kiếm");
+        dialog.setMessage("Xin chờ...");
+        dialog.show();
+
         Call<ArrayList<Player>> getListPlayer = dataClient.getListSearchPlayer(searchText);
         Context context = this;
         getListPlayer.enqueue(new Callback<ArrayList<Player>>() {
@@ -74,11 +81,16 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
                     recyclerViewPlayerManagement.setLayoutManager(new LinearLayoutManager(context));
                     listPlayerManagementAdapter = new ListPlayerManagementAdapter(listPlayerManagementItem, PlayerManagement.this, PlayerManagement.this);
                     recyclerViewPlayerManagement.setAdapter(listPlayerManagementAdapter);
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Tìm kiếm thất bại", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
             @Override
             public void onFailure(Call<ArrayList<Player>> call, Throwable t) {
-
+                Toast.makeText(getApplicationContext(), "Tìm kiếm thất bại", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
     }
@@ -157,5 +169,11 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setEvent("");
     }
 }

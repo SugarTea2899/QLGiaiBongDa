@@ -67,6 +67,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công.", Toast.LENGTH_SHORT).show();
                             State.isLogined = true;
                             dialog.dismiss();
+                            finish();
                         }else{
                             Toast.makeText(getApplicationContext(), "Đăng nhập thất bại.", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();

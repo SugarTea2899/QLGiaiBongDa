@@ -314,18 +314,5 @@
         android:background="@android:color/transparent"
         android:src="@drawable/eidt_icon"/>
 
-    <ImageButton
-        android:id="@+id/btnSetCaptain"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:scaleType="fitXY"
-        android:layout_above="@+id/btnEditPlayer"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="12dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/captain_icon"/>
-
 
 </RelativeLayout>

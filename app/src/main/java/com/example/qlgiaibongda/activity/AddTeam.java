@@ -49,6 +49,7 @@ public class AddTeam extends AppCompatActivity {
     private TextView tvTitle;
 
     private ImageButton btnFolder;
+    private ImageButton btnBack;
     private de.hdodenhof.circleimageview.CircleImageView circleImageView;
 
     private EditText edtTeamName;
@@ -82,6 +83,7 @@ public class AddTeam extends AppCompatActivity {
         edtStadium = (EditText) findViewById(R.id.edtStadium);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         edtShortName = (EditText) findViewById(R.id.edtShortName);
+        btnBack = (ImageButton) findViewById(R.id.backBtn);
     }
 
     private void setEvent(){
@@ -98,6 +100,13 @@ public class AddTeam extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addTeam();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

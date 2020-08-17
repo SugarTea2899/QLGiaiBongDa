@@ -57,6 +57,7 @@ public class EditTeam extends AppCompatActivity {
     private TextView tvTitle;
 
     private ImageButton btnFolder;
+    private ImageButton btnBack;
     private de.hdodenhof.circleimageview.CircleImageView circleImageView;
 
     private EditText edtTeamName;
@@ -104,9 +105,17 @@ public class EditTeam extends AppCompatActivity {
         playerList = new ArrayList<>();
         coachList = new ArrayList<>();
         btnEdit = (Button) findViewById(R.id.btnEditTeam);
+        btnBack = (ImageButton) findViewById(R.id.backBtn);
     }
 
     private void setEvent(){
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         btnFolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
