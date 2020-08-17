@@ -4,6 +4,7 @@ import com.example.qlgiaibongda.model.Coach;
 import com.example.qlgiaibongda.model.Match;
 import com.example.qlgiaibongda.model.MatchStatDetails;
 import com.example.qlgiaibongda.model.Player;
+import com.example.qlgiaibongda.model.Rank;
 import com.example.qlgiaibongda.model.Referee;
 import com.example.qlgiaibongda.model.Team;
 
@@ -43,6 +44,10 @@ public interface DataClient {
     Call<ResponseBody> updatePlayer(@Field("playerId") String playerId, @Field("name") String name, @Field("dob") String dob, @Field("type") int type,
                                     @Field("nationality") String nationality, @Field("teamId") String teamId, @Field("number") int playerNumber);
 
+    @FormUrlEncoded
+    @POST("player/remove")
+    Call<ResponseBody> removePlayer(@Field("playerId") String playerId);
+
     @Multipart
     @POST("player/upload-avatar")
     Call<ResponseBody> uploadPlayerAvatar(@Query("id") String id ,@Part MultipartBody.Part avatar);
@@ -65,6 +70,23 @@ public interface DataClient {
     @GET("team/search?")
     Call<ArrayList<Team>> getListSearchTeam(@Query("name") String name);
 
+    @FormUrlEncoded
+    @POST("team/add")
+    Call<ResponseBody> addTeam(@Field("name") String name, @Field("shortName") String shortName,
+                               @Field("stadium") String stadium, @Field("sponsor") String donors);
+
+    @FormUrlEncoded
+    @POST("team/update")
+    Call<ResponseBody> updateTeam(@Field("teamId") String teamId, @Field("name") String name, @Field("shortName") String shortName,
+                                  @Field("stadium") String stadium, @Field("sponsor") String donors, @Field("coachId") String coachId,
+                                  @Field("captainId") String captainId);
+
+
+
+    @Multipart
+    @POST("team/upload-logo")
+    Call<ResponseBody> uploadTeamLogo(@Query("id") String id ,@Part MultipartBody.Part logo);
+
     @GET("coach/info?")
     Call<Coach> getInfoCoach(@Query("coachId") String coachId);
 
@@ -78,6 +100,9 @@ public interface DataClient {
     @POST("match/update-state")
     Call<ResponseBody> endMatch(@Field("matchId") String matchId, @Field("stateMatch") Integer state);
 
+    @GET("coach/list")
+    Call<List<Coach>> getCoachList();
+
     @GET("match/history?")
     Call<List<Match>> getListMatchOfTeam(@Query("team") String team, @Query("stateMatch") Integer state);
 
@@ -89,9 +114,34 @@ public interface DataClient {
     Call<ResponseBody> addMatchDetail(@Field("matchId") String matchId, @Field("type") Integer type, @Field("minute") Integer minute,
                                         @Field("isHomeTeam") Boolean isHomeTeam, @Field("playerId") String playerId, @Field("inId") String inId, @Field("outId") String outId);
 
+
+    @GET("match/recent-round")
+    Call<Match> getCurrentRound();
+
+    @GET("match/recent-match")
+    Call<ArrayList<Match>> getListCurrentMatch(@Query("round") int round);
+
+
     @GET("referee/search?")
     Call<ArrayList<Referee>> getListSearchReferee(@Query("name") String name);
 
+    @GET("referee/list")
+    Call<List<Referee>> getRefereeList();
+
     @GET("match/get-match-info")
     Call<Match> getMatchInfo(@Query("matchId") String matchId);
+
+    @FormUrlEncoded
+    @POST("match/add")
+    Call<ResponseBody> addMatch(@Field("homeTeam") String homeTeam, @Field("guestTeam") String guestTeam, @Field("dateStart") long dateStart,
+                                @Field("stadium") String stadium, @Field("refereeId") String refereeId, @Field("round") int round);
+
+    @FormUrlEncoded
+    @POST("match/update")
+    Call<ResponseBody> updateMatch(@Field("matchId") String matchId, @Field("homeTeam") String homeTeam, @Field("guestTeam") String guestTeam, @Field("dateStart") long dateStart,
+                                   @Field("stadium") String stadium, @Field("refereeId") String refereeId, @Field("round") int round);
+
+    @GET("rank/current")
+    Call<ArrayList<Rank>> getCurrentRank(@Query("season") int season);
+
 }

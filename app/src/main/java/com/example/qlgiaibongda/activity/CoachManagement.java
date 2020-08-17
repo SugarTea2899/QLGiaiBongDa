@@ -20,6 +20,7 @@ import com.example.qlgiaibongda.adapter.ListCoachManagementAdapter;
 import com.example.qlgiaibongda.model.Coach;
 import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.example.qlgiaibongda.retrofit.DataClient;
+import com.example.qlgiaibongda.state.State;
 
 import java.util.ArrayList;
 
@@ -49,6 +50,10 @@ public class CoachManagement extends AppCompatActivity implements AdapterView.On
         setContentView(R.layout.activity_coach_management);
 
         getWidget();
+        if (!State.isLogined)
+        {
+            imgButtonAddCoach.setVisibility(View.INVISIBLE);
+        }
         setEvent("");
 
     }

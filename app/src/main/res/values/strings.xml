@@ -12,7 +12,7 @@
     <string name="referee_name">Tên trọng tài</string>
     <string name="round">Vòng đấu</string>
     <string name="date_start">Ngày bắt đầu</string>
-
+    <string name="short_name">Tên viết tắt</string>
 
     <string name="title_activity_main">Main</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

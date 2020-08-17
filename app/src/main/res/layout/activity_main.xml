@@ -72,7 +72,7 @@
                             android:src="@drawable/grey_line_separator" />
 
                         <ImageButton
-                            android:id="@+id/listMatchHistoryImageView"
+                            android:id="@+id/listMatchHistoryImageButton"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_alignParentEnd="true"
@@ -88,7 +88,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginRight="5dp"
-                            android:layout_toLeftOf="@id/listMatchHistoryImageView"
+                            android:layout_toLeftOf="@id/listMatchHistoryImageButton"
                             android:gravity="center_vertical"
                             android:text="Xem các trận trước"
 
@@ -189,7 +189,7 @@
                             android:src="@drawable/grey_line_separator" />
 
                         <ImageButton
-                            android:id="@+id/listFullRankedImageView"
+                            android:id="@+id/listFullRankedImageButton"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_alignParentEnd="true"
@@ -209,7 +209,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_below="@id/listRankedSeparator"
 
-                            android:layout_toLeftOf="@id/listFullRankedImageView"
+                            android:layout_toLeftOf="@id/listFullRankedImageButton"
                             android:gravity="center_vertical"
                             android:text="Xem chi tiết"
                             android:textSize="15sp"

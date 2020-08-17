@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,9 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qlgiaibongda.R;
-import com.example.qlgiaibongda.activity.AddPlayer;
+import com.example.qlgiaibongda.activity.EditPlayer;
+import com.example.qlgiaibongda.activity.MainActivity;
 import com.example.qlgiaibongda.activity.PlayerManagement;
 import com.example.qlgiaibongda.model.Player;
+import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -57,7 +58,9 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
                     .error(R.drawable.no_avatar)
                     .into(holder.imgPlayerPhoto);
         }
-        holder.tvPlayerClub.setText(PlayerManagement.teamIdToTeamNameHashMap.get(player.getTeamId()));
+        holder.tvPlayerClub.setText(MainActivity.teamIdToTeamNameHashMap.get(player.getTeamId()));
+        holder.imgPlayerPhoto.setImageResource(R.drawable.old_trafford);
+        holder.tvPlayerClub.setText(MainActivity.teamIdToTeamNameHashMap.get(player.getTeamId()));
         holder.tvPlayerName.setText(player.getName());
         holder.tvPlayerFreeAgent.setText("Cầu thủ tự do");
         holder.imgPlayerClub.setImageResource(R.drawable.manutd);
@@ -81,11 +84,20 @@ public class ListPlayerManagementAdapter extends RecyclerView.Adapter<ListPlayer
             @Override
             public void onItemClick(View v, int i) {
                 Toast.makeText(context,player.getName(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, AddPlayer.class);
+                Intent intent = new Intent(context, EditPlayer.class);
+                intent.putExtra("playerId", player.getId());
 //               
                 context.startActivity(intent);
             }
         });
+
+        if (player.getAvatar() == null || player.getAvatar().length() == 0){
+            Picasso.get().load(R.drawable.no_avatar).into(holder.imgPlayerPhoto);
+        }else{
+            Picasso.get().load(APIUtils.BASE_URL + player.getAvatar()).error(R.drawable.no_avatar).into(holder.imgPlayerPhoto);
+        }
+
+
     }
 
     @Override
