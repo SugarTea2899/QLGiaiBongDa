@@ -1,5 +1,6 @@
 package com.example.qlgiaibongda.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -7,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -154,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void addMatchAndRound() {
+        teamNameToTeamHashMap.clear();
+        teamIdToTeamNameHashMap.clear();
+        teamNameToRankHashMap.clear();
+
         Call<Match> currentRoundCall = dataClient.getCurrentRound();
         currentRoundCall.enqueue(new Callback<Match>() {
             @Override
@@ -244,6 +250,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(View v, int i) {
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK)
+        {
+            setupTeamHashMap();
+            addMatchAndRound();
+        }
 
     }
 }

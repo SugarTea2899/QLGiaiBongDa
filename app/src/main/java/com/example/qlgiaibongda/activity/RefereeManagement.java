@@ -20,6 +20,7 @@ import com.example.qlgiaibongda.adapter.ListRefereeManagementAdapter;
 import com.example.qlgiaibongda.model.Referee;
 import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.example.qlgiaibongda.retrofit.DataClient;
+import com.example.qlgiaibongda.state.State;
 import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.ArrayList;
@@ -50,6 +51,10 @@ public class RefereeManagement extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_referee_management);
 
         getWidget();
+        if (!State.isLogined)
+        {
+            imgButtonAddReferee.setVisibility(View.INVISIBLE);
+        }
         setEvent("");
     }
 

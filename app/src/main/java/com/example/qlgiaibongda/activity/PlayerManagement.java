@@ -22,6 +22,7 @@ import com.example.qlgiaibongda.model.Player;
 import com.example.qlgiaibongda.model.Team;
 import com.example.qlgiaibongda.retrofit.APIUtils;
 import com.example.qlgiaibongda.retrofit.DataClient;
+import com.example.qlgiaibongda.state.State;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,10 @@ public class PlayerManagement extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_player_management);
 
         getWidget();
+        if (!State.isLogined)
+        {
+            imgButtonAddPlayer.setVisibility(View.INVISIBLE);
+        }
         setEvent("");
 
     }
