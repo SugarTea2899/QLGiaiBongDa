@@ -46,6 +46,10 @@ public interface DataClient {
     Call<ResponseBody> updatePlayer(@Field("playerId") String playerId, @Field("name") String name, @Field("dob") String dob, @Field("type") int type,
                                     @Field("nationality") String nationality, @Field("teamId") String teamId, @Field("number") int playerNumber);
 
+    @FormUrlEncoded
+    @POST("player/remove")
+    Call<ResponseBody> removePlayer(@Field("playerId") String playerId);
+
     @Multipart
     @POST("player/upload-avatar")
     Call<ResponseBody> uploadPlayerAvatar(@Query("id") String id ,@Part MultipartBody.Part avatar);
